@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 
@@ -6,12 +5,30 @@ public class RoskildeFrieBornehave {
 
     public static void main (String[] args ) {
         Scanner input = new Scanner(System.in);
+        FileHandler filehandler = new FileHandler();
         List<Child> childList = new LinkedList<>();
+        childList = filehandler.readChildFromFile();
+        List<Parent> parentList = new LinkedList<>();
 
-        childList.add(createChild(input));
         System.out.println(childList);
 
+/*
+        childList.add(createChild(input));
+
+
+        filehandler.writeChildToFile(childList);
+*/
+
+/*
+        parentList.add(createParent(input));
+
+        filehandler.writeParentToFile(parentList);
+
+ */
+
     }
+
+
 
     private static Child createChild(Scanner input) {
         System.out.println("Enter first name: ");
@@ -37,6 +54,20 @@ public class RoskildeFrieBornehave {
         Child newChild = new Child(firstName, lastName, cprNr, startDate, room, parentID, date, waitList);
         return newChild;
 
+    }
+
+    private static Parent createParent(Scanner input){
+        System.out.println("Enter first name: ");
+        String firstName = input.next();
+        System.out.println("Enter last name: ");
+        String lastName = input.next();
+        System.out.println("Is parent a mother? m/d");
+        String momordad = input.next();
+        System.out.println("Enter phone number: ");
+        int phoneNumber = input.nextInt();
+
+        Parent newParent = new Parent(firstName, lastName, momordad, phoneNumber);
+        return newParent;
     }
 
 }
