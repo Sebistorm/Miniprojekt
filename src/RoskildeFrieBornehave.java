@@ -12,16 +12,36 @@ public class RoskildeFrieBornehave {
         //parentList = filehandler.readParentFromFile();
         System.out.println(childList);
         //System.out.println(parentList);
-/*
+
         childList.add(createChild(input));
 
-        filehandler.writeChildToFile(childList);
-*/
+        //filehandler.writeChildToFile(childList);
+
         //parentList.add(createParent(input));
        // filehandler.writeParentToFile(parentList);
-        changeFirstName(childList,input);
+        //changeFirstName(childList,input);
+
+        //deleteChild(childList,input);
         filehandler.writeChildToFile(childList);
 
+    }
+
+
+    private static void deleteChild(List<Child> list, Scanner input) {
+        Iterator<Child> it = list.iterator();
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("Barns ID " + list.get(i).getID());
+            System.out.println("Barns navn " + list.get(i).getFirstName());
+        }
+        System.out.println("Indtast id'et på det child på som skal slettes");
+        int chosenID = input.nextInt();
+
+        while(it.hasNext()) {
+            Child index = it.next();
+            if(index.getID() == chosenID) {
+                it.remove();
+            }
+        }
     }
 
 
@@ -45,6 +65,7 @@ public class RoskildeFrieBornehave {
                 list.get(i).changeFirstName(newName);
                 System.out.println("opdateret info");
                 System.out.println(list.get(i));
+                break;
             }
         }
     }

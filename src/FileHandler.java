@@ -15,6 +15,9 @@ public class FileHandler {
             FileWriter myWriter = new FileWriter(childData);
             for (int i = 0;i<childList.size(); i++){
                 myWriter.write(childList.get(i).getID()  + " " +  childList.get(i).getFirstName() + " " + childList.get(i).getLastName() + " " + childList.get(i).getCprNR() + " " +  childList.get(i).getStartDate() + " " +  childList.get(i).getRoom() + " " + childList.get(i).getParentID() + " " + childList.get(i).getDate() + " " + childList.get(i).isWaitList());
+                if (i != childList.size()-1) {
+                    myWriter.write("\n");
+                }
             }
             myWriter.close();
 
@@ -30,6 +33,9 @@ public class FileHandler {
             FileWriter myWriter = new FileWriter(parentData);
             for (int i = 0;i<parentList.size(); i++){
                 myWriter.write(parentList.get(i).getID()  + " " +  parentList.get(i).getFirstName() + " " + parentList.get(i).getLastName() + " " + parentList.get(i).getMomordad() + " " + parentList.get(i).getPhoneNumber());
+                if (i != parentList.size()-1) {
+                    myWriter.write("\n");
+                }
             }
             myWriter.close();
 
