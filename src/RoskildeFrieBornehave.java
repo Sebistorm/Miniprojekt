@@ -6,25 +6,20 @@ public class RoskildeFrieBornehave {
     public static void main (String[] args ) {
         Scanner input = new Scanner(System.in);
         FileHandler filehandler = new FileHandler();
-        List<Child> childList = new LinkedList<>();
-        childList = filehandler.readChildFromFile();
+       // List<Child> childList = new LinkedList<>();
+       // childList = filehandler.readChildFromFile();
         List<Parent> parentList = new LinkedList<>();
-
-        System.out.println(childList);
-
+        parentList = filehandler.readParentFromFile();
+        //System.out.println(childList);
+        System.out.println(parentList);
 /*
         childList.add(createChild(input));
 
-
         filehandler.writeChildToFile(childList);
 */
+        //parentList.add(createParent(input));
+       // filehandler.writeParentToFile(parentList);
 
-/*
-        parentList.add(createParent(input));
-
-        filehandler.writeParentToFile(parentList);
-
- */
 
     }
 

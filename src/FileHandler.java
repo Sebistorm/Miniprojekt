@@ -18,7 +18,6 @@ public class FileHandler {
             }
             myWriter.close();
 
-
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -70,4 +69,31 @@ public class FileHandler {
         return tempChildList;
     }
 
+    public List<Parent> readParentFromFile() {
+        List<Parent> tempParentList = new LinkedList<>();
+        try {
+            File parentData = new File("parentData.txt");
+            Scanner fileScanner = new Scanner(parentData);
+
+            while (fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine();
+                Scanner lineScan = new Scanner(line);
+
+                String firstName = lineScan.next();
+                String lastName = lineScan.next();
+                String momordad = lineScan.next();
+                int phoneNumber = lineScan.nextInt();
+
+                tempParentList.add(new Parent(firstName, lastName, momordad, phoneNumber));
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return tempParentList;
+    }
 }
+
+
+//
