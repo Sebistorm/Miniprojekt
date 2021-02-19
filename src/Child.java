@@ -122,5 +122,10 @@ public class Child {
         this.waitList = waitList;
     }
 
+    public void changeFirstName(String newName) {
+        this.firstName = newName;
+    }
+
+
 }
 

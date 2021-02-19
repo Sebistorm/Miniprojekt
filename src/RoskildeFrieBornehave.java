@@ -6,12 +6,12 @@ public class RoskildeFrieBornehave {
     public static void main (String[] args ) {
         Scanner input = new Scanner(System.in);
         FileHandler filehandler = new FileHandler();
-       // List<Child> childList = new LinkedList<>();
-       // childList = filehandler.readChildFromFile();
-        List<Parent> parentList = new LinkedList<>();
-        parentList = filehandler.readParentFromFile();
-        //System.out.println(childList);
-        System.out.println(parentList);
+        List<Child> childList = new LinkedList<>();
+        childList = filehandler.readChildFromFile();
+        //List<Parent> parentList = new LinkedList<>();
+        //parentList = filehandler.readParentFromFile();
+        System.out.println(childList);
+        //System.out.println(parentList);
 /*
         childList.add(createChild(input));
 
@@ -19,10 +19,35 @@ public class RoskildeFrieBornehave {
 */
         //parentList.add(createParent(input));
        // filehandler.writeParentToFile(parentList);
-
+        changeFirstName(childList,input);
+        filehandler.writeChildToFile(childList);
 
     }
 
+
+    private static void changeFirstName(List<Child> list, Scanner input) {
+        // print relevante oplysninger til bruger
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("Barns ID " + list.get(i).getID());
+            System.out.println("Barns navn " + list.get(i).getFirstName());
+        }
+        System.out.println("Skriv id'et på barnet");
+        // scanner til indtastning af id på child
+        int index = input.nextInt();
+        System.out.println(index);
+        // loop listen igennem
+        for (int i = 0; i < list.size(); i++) {
+            // hvis ID'et, som brugeren indtaster er lig med en af børnenes id'ere så gør dette:
+            if(index == list.get(i).getID()) {
+                System.out.println("Hvad skal barnet hedde?");
+                String newName = input.next();
+                // kald metode fra child.java, som redigere fornavnet
+                list.get(i).changeFirstName(newName);
+                System.out.println("opdateret info");
+                System.out.println(list.get(i));
+            }
+        }
+    }
 
 
     private static Child createChild(Scanner input) {
