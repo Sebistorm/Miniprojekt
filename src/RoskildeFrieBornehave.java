@@ -207,6 +207,56 @@ public class RoskildeFrieBornehave {
         }
     }
 
+    private static void changeParentID(List<Child> list, Scanner input) {
+        // print relevante oplysninger til bruger
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("Barns ID " + list.get(i).getID());
+            System.out.println("Barns navn " + list.get(i).getLastName());
+        }
+        System.out.println("Skriv id'et på barnet");
+        // scanner til indtastning af id på child
+        int index = input.nextInt();
+        System.out.println(index);
+        // loop listen igennem
+        for (int i = 0; i < list.size(); i++) {
+            // hvis ID'et, som brugeren indtaster er lig med en af børnenes id'ere så gør dette:
+            if(index == list.get(i).getID()) {
+                System.out.println("Ny start dato: ");
+                int parentID = input.nextInt();
+                // kald metode fra child.java, som ændrer parent ID
+                list.get(i).changeParentID(parentID);
+                System.out.println("opdateret info");
+                System.out.println(list.get(i));
+                break;
+            }
+        }
+    }
+
+    private static void changeDate(List<Child> list, Scanner input) {
+        // print relevante oplysninger til bruger
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("Barns ID " + list.get(i).getID());
+            System.out.println("Barns navn " + list.get(i).getLastName());
+        }
+        System.out.println("Skriv id'et på barnet");
+        // scanner til indtastning af id på child
+        int index = input.nextInt();
+        System.out.println(index);
+        // loop listen igennem
+        for (int i = 0; i < list.size(); i++) {
+            // hvis ID'et, som brugeren indtaster er lig med en af børnenes id'ere så gør dette:
+            if(index == list.get(i).getID()) {
+                System.out.println("set date: ");
+                int newDate = input.nextInt();
+                // kald metode fra child.java, som ændrer dato
+                list.get(i).changeDate(newDate);
+                System.out.println("opdateret info");
+                System.out.println(list.get(i));
+                break;
+            }
+        }
+    }
+
 
     private static Child createChild(Scanner input) {
         System.out.println("Enter first name: ");

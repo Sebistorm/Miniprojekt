@@ -141,5 +141,13 @@ public class Child {
     public void changeRoom(String newRoom) {
         this.room = newRoom;
     }
+
+    public void changeParentID(int parentID) {
+        this.parentID = parentID;
+    }
+
+    public void changeDate(int newDate) {
+        this.date = newDate;
+    }
 }
 
