@@ -13,36 +13,35 @@ public class RoskildeFrieBornehave {
 //        List<Child> childList = new LinkedList<>();
 //        childList = filehandler.readChildFromFile();
 
-        //PRINT CHILD LIST
-        //System.out.println(childList);
+//        PRINT CHILD LIST
+//        System.out.println(childList);
+//
+//        CREATE CHILD FROM USER INPUT
+//        childList.add(createChild(input));
+//        filehandler.writeChildToFile(childList);
 
-        //CREATE CHILD FROM USER INPUT
-        //childList.add(createChild(input));
-        //filehandler.writeChildToFile(childList);
-
-        //EDIT CHILD
+        // EDIT CHILD
 //        changeFirstName(childList,input);
 //        filehandler.writeChildToFile(childList);
 //        System.out.println("NY BØRNELISTE:\n " + childList);
 
-        //DELETE CHILD
-        //deleteChild(childList,input);
-        //filehandler.writeChildToFile(childList);
+       // DELETE CHILD
+//        deleteChild(childList,input);
+//        filehandler.writeChildToFile(childList);
 
-        // PARENT //
 
 //        CREATE PARENT LIST AND READ FROM FILE
 //        List<Parent> parentList = new LinkedList<>();
 //        parentList = filehandler.readParentFromFile();
 
-//        PRINT PARENT LIST
+       // PRINT PARENT LIST
 //        System.out.println(parentList);
 
-//        CREATE PARENT FROM USER INPUT
+       // CREATE PARENT FROM USER INPUT
 //        parentList.add(Parent.createParent(input));
 //        filehandler.writeParentToFile(parentList);
 
-//        EDIT PARENT
+       // EDIT PARENT //
 //        Parent.changeParentFirstName(parentList,input);
 //        filehandler.writeParentToFile(parentList);
 //        System.out.println("NY LISTE:\n " + parentList);
@@ -52,21 +51,17 @@ public class RoskildeFrieBornehave {
 //        filehandler.writeParentToFile(parentList);
 
 
-//        STAFF
-//        List<Staff> staffList = new ArrayList<>();
-//        staffList.add(createStaff(input));
-//        filehandler.writeStaffToFile(staffList);
-//        System.out.println("NY LISTE:\n " + staffList);
+        // STAFF //
+        List<Staff> staffList = new ArrayList<>();
+        staffList = filehandler.readStaffFromFile();
+
+        staffList.add(Staff.createStaff(input));
+        filehandler.writeStaffToFile(staffList);
+        System.out.println("NY LISTE:\n " + staffList);
+
+
     }
 
-    public static Staff createStaff(Scanner input){
-
-        System.out.println("navn");
-        String name = input.next();
-
-        Staff newStaff = new Staff(name);
-        return newStaff;
-    }
 
 
     private static void deleteChild(List<Child> list, Scanner input) {

@@ -1,6 +1,7 @@
+import java.util.Scanner;
+
 public class Staff {
     String name;
-
 
     public Staff(String name) {
         this.name = name;
@@ -8,12 +9,19 @@ public class Staff {
 
     @Override
     public String toString() {
-        return "com.company.Staff{" +
-                "name='" + name + '\'' +
-                '}';
+        return "Staff: " +
+                "name='" + name + "\n";
     }
     public String getName() {
         return name;
     }
 
+    public static Staff createStaff(Scanner input){
+
+        System.out.println("navn");
+        String name = input.next();
+
+        Staff newStaff = new Staff(name);
+        return newStaff;
+    }
 }

@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,51 +9,51 @@ import java.io.FileNotFoundException;
 
 public class FileHandler {
 
-    public void writeChildToFile(List<Child> childList){
-        try{
+    public void writeChildToFile(List<Child> childList) {
+        try {
             File childData = new File("childData.txt");
 
             FileWriter myWriter = new FileWriter(childData);
-            for (int i = 0;i<childList.size(); i++){
-                myWriter.write(childList.get(i).getID()  + " " +  childList.get(i).getFirstName() + " " + childList.get(i).getLastName() + " " + childList.get(i).getCprNR() + " " +  childList.get(i).getStartDate() + " " +  childList.get(i).getRoom() + " " + childList.get(i).getParentID() + " " + childList.get(i).getDate() + " " + childList.get(i).isWaitList());
-                if (i != childList.size()-1) {
+            for (int i = 0; i < childList.size(); i++) {
+                myWriter.write(childList.get(i).getID() + " " + childList.get(i).getFirstName() + " " + childList.get(i).getLastName() + " " + childList.get(i).getCprNR() + " " + childList.get(i).getStartDate() + " " + childList.get(i).getRoom() + " " + childList.get(i).getParentID() + " " + childList.get(i).getDate() + " " + childList.get(i).isWaitList());
+                if (i != childList.size() - 1) {
                     myWriter.write("\n");
                 }
             }
             myWriter.close();
 
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void writeParentToFile(List<Parent> parentList){
-        try{
+    public void writeParentToFile(List<Parent> parentList) {
+        try {
             File parentData = new File("parentData.txt");
 
             FileWriter myWriter = new FileWriter(parentData);
-            for (int i = 0;i<parentList.size(); i++){
-                myWriter.write(parentList.get(i).getID()  + " " +  parentList.get(i).getFirstName() + " " + parentList.get(i).getLastName() + " " + parentList.get(i).getMomordad() + " " + parentList.get(i).getPhoneNumber());
-                if (i != parentList.size()-1) {
+            for (int i = 0; i < parentList.size(); i++) {
+                myWriter.write(parentList.get(i).getID() + " " + parentList.get(i).getFirstName() + " " + parentList.get(i).getLastName() + " " + parentList.get(i).getMomordad() + " " + parentList.get(i).getPhoneNumber());
+                if (i != parentList.size() - 1) {
                     myWriter.write("\n");
                 }
             }
             myWriter.close();
 
 
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void writeStaffToFile(List<Staff> staffList){
-        try{
+    public void writeStaffToFile(List<Staff> staffList) {
+        try {
             File staffData = new File("staffData.txt");
 
             FileWriter myWriter = new FileWriter(staffData);
-            for (int i = 0; i<staffList.size(); i++){
+            for (int i = 0; i < staffList.size(); i++) {
                 myWriter.write(staffList.get(i).getName());
-                if (i != staffList.size()-1) {
+                if (i != staffList.size() - 1) {
                     myWriter.write("\n");
                 }
 
@@ -65,13 +66,13 @@ public class FileHandler {
     }
 
 
-    public List<Child> readChildFromFile(){
+    public List<Child> readChildFromFile() {
         List<Child> tempChildList = new LinkedList<>();
         try {
             File childData = new File("childData.txt");
             Scanner fileScanner = new Scanner(childData);
 
-            while(fileScanner.hasNextLine()){
+            while (fileScanner.hasNextLine()) {
                 String line = fileScanner.nextLine();
                 Scanner lineScan = new Scanner(line);
 
@@ -88,7 +89,7 @@ public class FileHandler {
                 tempChildList.add(new Child(id, firstName, lastName, cprNumber, startDate, room, parentID, date, waitlist));
             }
 
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -119,6 +120,29 @@ public class FileHandler {
         }
 
         return tempParentList;
+    }
+
+    public List<Staff> readStaffFromFile() {
+
+        List<Staff> tempStaffList = new ArrayList<>();
+        try {
+            File staffData = new File("staffData.txt");
+            Scanner fileScanner = new Scanner(staffData);
+
+            while (fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine();
+                Scanner lineScan = new Scanner(line);
+
+                String name = lineScan.next();
+
+                tempStaffList.add(new Staff(name));
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return tempStaffList;
     }
 }
 
