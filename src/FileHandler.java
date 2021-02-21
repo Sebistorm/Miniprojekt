@@ -45,6 +45,26 @@ public class FileHandler {
         }
     }
 
+    public void writeStaffToFile(List<Staff> staffList){
+        try{
+            File staffData = new File("staffData.txt");
+
+            FileWriter myWriter = new FileWriter(staffData);
+            for (int i = 0; i<staffList.size(); i++){
+                myWriter.write(staffList.get(i).getName());
+                if (i != staffList.size()-1) {
+                    myWriter.write("\n");
+                }
+
+            }
+            myWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public List<Child> readChildFromFile(){
         List<Child> tempChildList = new LinkedList<>();
         try {
@@ -85,6 +105,7 @@ public class FileHandler {
                 String line = fileScanner.nextLine();
                 Scanner lineScan = new Scanner(line);
 
+                int id = lineScan.nextInt();
                 String firstName = lineScan.next();
                 String lastName = lineScan.next();
                 String momordad = lineScan.next();

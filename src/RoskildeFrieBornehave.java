@@ -6,24 +6,66 @@ public class RoskildeFrieBornehave {
     public static void main (String[] args ) {
         Scanner input = new Scanner(System.in);
         FileHandler filehandler = new FileHandler();
-        List<Child> childList = new LinkedList<>();
-        childList = filehandler.readChildFromFile();
-        //List<Parent> parentList = new LinkedList<>();
-        //parentList = filehandler.readParentFromFile();
-        System.out.println(childList);
-        //System.out.println(parentList);
 
-        childList.add(createChild(input));
+        // CHILD //
 
+//        CREATE CHILD LIST AND READ FROM FILE
+//        List<Child> childList = new LinkedList<>();
+//        childList = filehandler.readChildFromFile();
+
+        //PRINT CHILD LIST
+        //System.out.println(childList);
+
+        //CREATE CHILD FROM USER INPUT
+        //childList.add(createChild(input));
         //filehandler.writeChildToFile(childList);
 
-        //parentList.add(createParent(input));
-       // filehandler.writeParentToFile(parentList);
-        //changeFirstName(childList,input);
+        //EDIT CHILD
+//        changeFirstName(childList,input);
+//        filehandler.writeChildToFile(childList);
+//        System.out.println("NY BØRNELISTE:\n " + childList);
 
+        //DELETE CHILD
         //deleteChild(childList,input);
-        filehandler.writeChildToFile(childList);
+        //filehandler.writeChildToFile(childList);
 
+        // PARENT //
+
+//        CREATE PARENT LIST AND READ FROM FILE
+//        List<Parent> parentList = new LinkedList<>();
+//        parentList = filehandler.readParentFromFile();
+
+//        PRINT PARENT LIST
+//        System.out.println(parentList);
+
+//        CREATE PARENT FROM USER INPUT
+//        parentList.add(Parent.createParent(input));
+//        filehandler.writeParentToFile(parentList);
+
+//        EDIT PARENT
+//        Parent.changeParentFirstName(parentList,input);
+//        filehandler.writeParentToFile(parentList);
+//        System.out.println("NY LISTE:\n " + parentList);
+
+//        DELETE PARENT
+//        Parent.deleteParent(parentList,input);
+//        filehandler.writeParentToFile(parentList);
+
+
+//        STAFF
+//        List<Staff> staffList = new ArrayList<>();
+//        staffList.add(createStaff(input));
+//        filehandler.writeStaffToFile(staffList);
+//        System.out.println("NY LISTE:\n " + staffList);
+    }
+
+    public static Staff createStaff(Scanner input){
+
+        System.out.println("navn");
+        String name = input.next();
+
+        Staff newStaff = new Staff(name);
+        return newStaff;
     }
 
 
@@ -70,7 +112,6 @@ public class RoskildeFrieBornehave {
         }
     }
 
-
     private static Child createChild(Scanner input) {
         System.out.println("Enter first name: ");
         String firstName = input.next();
@@ -97,18 +138,44 @@ public class RoskildeFrieBornehave {
 
     }
 
-    private static Parent createParent(Scanner input){
-        System.out.println("Enter first name: ");
-        String firstName = input.next();
-        System.out.println("Enter last name: ");
-        String lastName = input.next();
-        System.out.println("Is parent a mother? m/d");
-        String momordad = input.next();
-        System.out.println("Enter phone number: ");
-        int phoneNumber = input.nextInt();
+//    public static void changeParentFirstName(List<Parent> list, Scanner input) {
+//        // print relevante oplysninger til bruger
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.println("Forælders ID " + list.get(i).getID());
+//            System.out.println("Forælders navn " + list.get(i).getFirstName());
+//        }
+//        System.out.println("Skriv id'et på forælderen");
+//        // scanner til indtastning af id på parent
+//        int index = input.nextInt();
+//        System.out.println(index);
+//        // loop listen igennem
+//        for (int i = 0; i < list.size(); i++) {
+//            // hvis ID'et, som brugeren indtaster er lig med en af forældrenes id'ere så gør dette:
+//            if(index == list.get(i).getID()) {
+//                System.out.println("Hvad skal forælderen hedde?");
+//                String newParentFirstName = input.next();
+//                // kald metode fra Parent.java, som redigerer fornavnet
+//                list.get(i).changeParentFirstName(newParentFirstName);
+//                System.out.println("opdateret info");
+//                System.out.println(list.get(i));
+//                break;
+//            }
+//        }
+//    }
 
-        Parent newParent = new Parent(firstName, lastName, momordad, phoneNumber);
-        return newParent;
-    }
+
+//    private static Parent createParent(Scanner input){
+//        System.out.println("Enter first name: ");
+//        String firstName = input.next();
+//        System.out.println("Enter last name: ");
+//        String lastName = input.next();
+//        System.out.println("Is parent a mother? m/d");
+//        String momordad = input.next();
+//        System.out.println("Enter phone number: ");
+//        int phoneNumber = input.nextInt();
+//
+//        Parent newParent = new Parent(firstName, lastName, momordad, phoneNumber);
+//        return newParent;
+//    }
 
 }

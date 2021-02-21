@@ -50,8 +50,7 @@ public class Child {
                 ", room='" + room + '\'' +
                 ", parentID=" + parentID +
                 ", date=" + date +
-                ", waitList=" + waitList +
-                '}';
+                ", waitList=" + waitList + "\n";
     }
 
     public int getID() {
