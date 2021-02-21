@@ -81,6 +81,31 @@ public class RoskildeFrieBornehave {
         }
     }
 
+    private static void changeChildRoom(List<Child> list, Scanner input) {
+        // print relevante oplysninger til bruger
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("Barns ID " + list.get(i).getID());
+            System.out.println("Barns navn " + list.get(i).getFirstName());
+        }
+        System.out.println("Skriv id'et på barnet");
+        // scanner til indtastning af id på child
+        int index = input.nextInt();
+        System.out.println(index);
+        // loop listen igennem
+        for (int i = 0; i < list.size(); i++) {
+            // hvis ID'et, som brugeren indtaster er lig med en af børnenes id'ere så gør dette:
+            if(index == list.get(i).getID()) {
+                System.out.println("Hvilken stue skal barnet være på? Gul, Rød eller Grøn Stue");
+                String newRoom = input.next();
+                // kald metode fra child.java, som redigere fornavnet
+                list.get(i).changeRoom(newRoom);
+                System.out.println("opdateret info");
+                System.out.println(list.get(i));
+                break;
+            }
+        }
+    }
+
 
     private static void changeFirstName(List<Child> list, Scanner input) {
         // print relevante oplysninger til bruger
@@ -106,6 +131,82 @@ public class RoskildeFrieBornehave {
             }
         }
     }
+
+    private static void changeCPRnr(List<Child> list, Scanner input) {
+        // print relevante oplysninger til bruger
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("Barns ID " + list.get(i).getID());
+            System.out.println("Barns navn " + list.get(i).getLastName());
+        }
+        System.out.println("Skriv id'et på barnet");
+        // scanner til indtastning af id på child
+        int index = input.nextInt();
+        System.out.println(index);
+        // loop listen igennem
+        for (int i = 0; i < list.size(); i++) {
+            // hvis ID'et, som brugeren indtaster er lig med en af børnenes id'ere så gør dette:
+            if(index == list.get(i).getID()) {
+                System.out.println("Skriv nyt CPR: ");
+                int newCRP = input.nextInt();
+                // kald metode fra child.java, som redigere efternavnet
+                list.get(i).changeCPRnr(newCRP);
+                System.out.println("opdateret info");
+                System.out.println(list.get(i));
+                break;
+            }
+        }
+    }
+
+    private static void changeLastName(List<Child> list, Scanner input) {
+        // print relevante oplysninger til bruger
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("Barns ID " + list.get(i).getID());
+            System.out.println("Barns navn " + list.get(i).getLastName());
+        }
+        System.out.println("Skriv id'et på barnet");
+        // scanner til indtastning af id på child
+        int index = input.nextInt();
+        System.out.println(index);
+        // loop listen igennem
+        for (int i = 0; i < list.size(); i++) {
+            // hvis ID'et, som brugeren indtaster er lig med en af børnenes id'ere så gør dette:
+            if(index == list.get(i).getID()) {
+                System.out.println("Hvad er efternavnet?");
+                String newName = input.next();
+                // kald metode fra child.java, som redigere efternavnet
+                list.get(i).changeLastName(newName);
+                System.out.println("opdateret info");
+                System.out.println(list.get(i));
+                break;
+            }
+        }
+    }
+
+    private static void changeChildStartDate(List<Child> list, Scanner input) {
+        // print relevante oplysninger til bruger
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("Barns ID " + list.get(i).getID());
+            System.out.println("Barns navn " + list.get(i).getLastName());
+        }
+        System.out.println("Skriv id'et på barnet");
+        // scanner til indtastning af id på child
+        int index = input.nextInt();
+        System.out.println(index);
+        // loop listen igennem
+        for (int i = 0; i < list.size(); i++) {
+            // hvis ID'et, som brugeren indtaster er lig med en af børnenes id'ere så gør dette:
+            if(index == list.get(i).getID()) {
+                System.out.println("Ny start dato: ");
+                int newStartDate = input.nextInt();
+                // kald metode fra child.java, som ændrer startdato
+                list.get(i).changeStartDate(newStartDate);
+                System.out.println("opdateret info");
+                System.out.println(list.get(i));
+                break;
+            }
+        }
+    }
+
 
     private static Child createChild(Scanner input) {
         System.out.println("Enter first name: ");
