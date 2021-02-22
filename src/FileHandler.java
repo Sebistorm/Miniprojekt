@@ -33,7 +33,10 @@ public class FileHandler {
 
             FileWriter myWriter = new FileWriter(parentData);
             for (int i = 0; i < parentList.size(); i++) {
-                myWriter.write(parentList.get(i).getID() + " " + parentList.get(i).getFirstName() + " " + parentList.get(i).getLastName() + " " + parentList.get(i).getMomordad() + " " + parentList.get(i).getPhoneNumber());
+                myWriter.write(parentList.get(i).getID() + " " + parentList.get(i).getFirstName() + " "
+//                        + parentList.get(i).getLastName() + " " + parentList.get(i).getMomordad() + " "
+                        + parentList.get(i).getLastName() + " "
+                        + parentList.get(i).getPhoneNumber());
                 if (i != parentList.size() - 1) {
                     myWriter.write("\n");
                 }
@@ -109,10 +112,11 @@ public class FileHandler {
                 int id = lineScan.nextInt();
                 String firstName = lineScan.next();
                 String lastName = lineScan.next();
-                String momordad = lineScan.next();
+//                String momordad = lineScan.next();
                 int phoneNumber = lineScan.nextInt();
 
-                tempParentList.add(new Parent(firstName, lastName, momordad, phoneNumber));
+//                tempParentList.add(new Parent(firstName, lastName, momordad, phoneNumber));
+                tempParentList.add(new Parent(firstName, lastName, phoneNumber));
             }
 
         } catch (FileNotFoundException e) {

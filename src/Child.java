@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+// MANGLER VENTELISTE
+
 public class Child {
     private int ID;
     static int nextID = 1;
