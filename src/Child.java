@@ -127,6 +127,29 @@ public class Child {
         this.firstName = newName;
     }
 
+    public void changeLastName(String newName) {
+        this.firstName = newName;
 
+    }
+
+    public void changeCPRnr(int newCRP) {
+        this.cprNR = newCRP;
+    }
+
+    public void changeStartDate(int newStartDate) {
+        this.startDate = newStartDate;
+    }
+
+    public void changeRoom(String newRoom) {
+        this.room = newRoom;
+    }
+
+    public void changeParentID(int parentID) {
+        this.parentID = parentID;
+    }
+
+    public void changeDate(int newDate) {
+        this.date = newDate;
+    }
 }
 
