@@ -15,6 +15,8 @@ public class RoskildeFrieBornehave {
         childList = filehandler.readChildFromFile();
         parentList = filehandler.readParentFromFile();
 
+        parentList.add(parentList.get(0).createParent(input, filehandler));
+        filehandler.writeParentToFile(parentList);
 
         //Sets nextID
         Child child = new Child();
@@ -23,7 +25,7 @@ public class RoskildeFrieBornehave {
         Parent parent = new Parent();
         parent.changeNextID(filehandler.readCounters().get(1));
 
-        filehandler.writeParentToFile(parentList);
+
 
 
         saveCounters(filehandler);
@@ -163,14 +165,14 @@ public class RoskildeFrieBornehave {
                 backToSubMenuParent(input, filehandler);
                 break;
             case 2:
-                parentList.add(Parent.createParent(input));
+                parentList.add(Parent.createParent(input, filehandler));
                 filehandler.writeParentToFile(parentList);
                 backToSubMenuParent(input, filehandler);
                 break;
             case 3:
                 subMenuEditParent(input, filehandler);
             case 4:
-                Parent.deleteParent(parentList,input);
+                deleteParent(parentList,input);
                 filehandler.writeParentToFile(parentList);
                 backToSubMenuParent(input, filehandler);
                 break;
@@ -195,17 +197,17 @@ public class RoskildeFrieBornehave {
 
         switch (choice){
             case 1:
-                Parent.changeParentFirstName(parentList,input);
+                changeParentFirstName(parentList,input);
                 filehandler.writeParentToFile(parentList);
                 backToSubMenuParent(input, filehandler);
                 break;
             case 2:
-                Parent.changeParentLastName(parentList,input);
+                changeParentLastName(parentList,input);
                 filehandler.writeParentToFile(parentList);
                 backToSubMenuParent(input, filehandler);
                 break;
             case 3:
-                Parent.changeParentPhoneNumber(parentList,input);
+                changeParentPhoneNumber(parentList,input);
                 filehandler.writeParentToFile(parentList);
                 backToSubMenuParent(input, filehandler);
                 break;
@@ -303,8 +305,103 @@ public class RoskildeFrieBornehave {
         if(waitListAnswer.equalsIgnoreCase("y")){
             waitList = true;
         }
-        Child newChild = new Child(firstName, lastName, cprNr, startDate, room, parentID, date, waitList);
+        Child newChild = new Child(firstName, lastName, cprNr, startDate, room, date, waitList);
         return newChild;
+    }
+    public static void changeParentFirstName(List<Parent> list, Scanner input) {
+        // print relevante oplysninger til bruger
+        System.out.println("FORÆLDRELISTE");
+
+        for (int i = 0; i < list.size(); i++) {
+            System.out.print("ID " + list.get(i).getID() + ": ");
+            System.out.print(" " + list.get(i).getFirstName()+" ");
+            System.out.println(list.get(i).getLastName());
+        }
+        System.out.println("Skriv id'et på forælderen, du vil skifte fornavn på og tast ENTER.");
+        // scanner til at tage imod indtastning af id på parent
+        int index = input.nextInt();
+        System.out.println(index);
+        // loop listen igennem
+        for (int i = 0; i < list.size(); i++) {
+            // hvis ID'et, som brugeren indtaster er lig med en af forældrenes id'ere så gør dette:
+            if(index == list.get(i).getID()) {
+                //System.out.println("Hvad er forælderens nye fornavn?");
+                System.out.println("Hvad skal " + list.get(i).getFirstName()+" hedde til fornavn?");
+                String newName = input.next();
+                list.get(i).setFirstName(newName);
+                System.out.println("Navnet er nu ændret til "+list.get(i).getFirstName() +".");
+                //System.out.println(list.get(i));
+                break;
+            }
+        }
+    }
+
+    public static void changeParentLastName(List<Parent> list, Scanner input) {
+        // PRINT OVERSIGT
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("Forælders ID " + list.get(i).getID());
+            System.out.println("Forælders fornavn " + list.get(i).getFirstName());
+            System.out.println("Forælders efternavn " + list.get(i).getLastName());
+        }
+        System.out.println("Skriv id'et på forælderen, som du vil ændre navn på og tast Enter: ");
+        // scanner til at tage imod indtastning af id på parent
+        int index = input.nextInt();
+        System.out.println(index);
+        // loop listen igennem
+        for (int i = 0; i < list.size(); i++) {
+            // hvis ID'et, som brugeren indtaster er lig med en af forældrenes id så gør dette:
+            if (index == list.get(i).getID()) {
+                System.out.println("Indtast forælderens nye efternavn: ");
+                String newName = input.next();
+                list.get(i).setLastName(newName);
+                System.out.println("Navnet er nu ændret.");
+                System.out.println(list.get(i));
+                break;
+            }
+        }
+    }
+
+    public static void changeParentPhoneNumber(List<Parent> list, Scanner input) {
+        // PRINT OVERSIGT
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("Forælders ID " + list.get(i).getID());
+            System.out.println("Forælders navn " + list.get(i).getLastName());
+            System.out.println("Telefonnummer " + list.get(i).getPhoneNumber());
+        }
+        System.out.println("Skriv id'et på forælderen, som du vil ændre navn på og tast Enter: ");
+        // scanner til at tage imod indtastning af id på parent
+        int index = input.nextInt();
+        System.out.println(index);
+        // loop listen igennem
+        for (int i = 0; i < list.size(); i++) {
+            // hvis ID'et, som brugeren indtaster er lig med en af forældrenes id så gør dette:
+            if (index == list.get(i).getID()) {
+                System.out.println("Indtast forælderens nye telefonnummer: ");
+                int newPhone = input.nextInt();
+                list.get(i).setPhoneNumber(newPhone);
+                System.out.println("Telefonnummeret er nu ændret.");
+                System.out.println(list.get(i));
+                break;
+            }
+        }
+    }
+
+    public static void deleteParent(List<Parent> list, Scanner input) {
+        Iterator<Parent> it = list.iterator();
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("Forælders ID " + list.get(i).getID());
+            System.out.println("Forælders navn " + list.get(i).getFirstName());
+            System.out.println("");
+        }
+        System.out.println("Indtast id'et på parent som skal slettes");
+        int chosenID = input.nextInt();
+
+        while(it.hasNext()) {
+            Parent index = it.next();
+            if(index.getID() == chosenID) {
+                it.remove();
+            }
+        }
     }
 
 

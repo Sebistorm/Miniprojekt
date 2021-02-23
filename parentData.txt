@@ -1,6 +1,7 @@
-1 l l 2
-2 h h 3
-3 k k 4
-4 l l 2
-5 h h 3
-6 k k 4
+1 l l 1 2
+2 h h 2 3
+3 k k 3 4
+4 l l 4 2
+5 h h 5 3
+6 k k 6 4
+7 Jesper Nop 5 12345678

@@ -15,7 +15,7 @@ public class FileHandler {
 
             FileWriter myWriter = new FileWriter(childData);
             for (int i = 0; i < childList.size(); i++) {
-                myWriter.write(childList.get(i).getID() + " " + childList.get(i).getFirstName() + " " + childList.get(i).getLastName() + " " + childList.get(i).getCprNR() + " " + childList.get(i).getStartDate() + " " + childList.get(i).getRoom() + " " + childList.get(i).getParentID() + " " + childList.get(i).getDate() + " " + childList.get(i).isWaitList());
+                myWriter.write(childList.get(i).getID() + " " + childList.get(i).getFirstName() + " " + childList.get(i).getLastName() + " " + childList.get(i).getCprNR() + " " + childList.get(i).getStartDate() + " " + childList.get(i).getRoom() + " " + childList.get(i).getDate() + " " + childList.get(i).isWaitList());
                 if (i != childList.size() - 1) {
                     myWriter.write("\n");
                 }
@@ -34,7 +34,7 @@ public class FileHandler {
             FileWriter myWriter = new FileWriter(parentData);
             for (int i = 0; i < parentList.size(); i++) {
                 myWriter.write(parentList.get(i).getID() + " " + parentList.get(i).getFirstName() + " "
-                        + parentList.get(i).getLastName() + " "
+                        + parentList.get(i).getLastName() + " " + parentList.get(i).getChildId() + " "
                         + parentList.get(i).getPhoneNumber());
                 if (i != parentList.size() - 1) {
                     myWriter.write("\n");
@@ -88,7 +88,7 @@ public class FileHandler {
                 int date = lineScan.nextInt();
                 boolean waitlist = lineScan.nextBoolean();
 
-                tempChildList.add(new Child(id, firstName, lastName, cprNumber, startDate, room, parentID, date, waitlist));
+                tempChildList.add(new Child(id, firstName, lastName, cprNumber, startDate, room, date, waitlist));
             }
 
         } catch (FileNotFoundException e) {
@@ -111,11 +111,11 @@ public class FileHandler {
                 int id = lineScan.nextInt();
                 String firstName = lineScan.next();
                 String lastName = lineScan.next();
-//                String momordad = lineScan.next();
+                int childID = lineScan.nextInt();
                 int phoneNumber = lineScan.nextInt();
 
 //                tempParentList.add(new Parent(firstName, lastName, momordad, phoneNumber));
-                tempParentList.add(new Parent(firstName, lastName, phoneNumber));
+                tempParentList.add(new Parent(firstName, lastName, childID, phoneNumber));
             }
 
         } catch (FileNotFoundException e) {
