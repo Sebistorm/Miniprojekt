@@ -177,14 +177,14 @@ public class RoskildeFrieBornehave {
                 backToSubMenuParent(input, filehandler);
                 break;
             case 2:
-                parentList.add(Parent.createParent(input));
+                parentList.add(createParent(input));
                 filehandler.writeParentToFile(parentList);
                 backToSubMenuParent(input, filehandler);
                 break;
             case 3:
                 subMenuEditParent(input, filehandler);
             case 4:
-                Parent.deleteParent(parentList,input);
+                deleteParent(parentList,input);
                 filehandler.writeParentToFile(parentList);
                 backToSubMenuParent(input, filehandler);
                 break;
@@ -209,17 +209,17 @@ public class RoskildeFrieBornehave {
 
         switch (choice){
             case 1:
-                Parent.changeParentFirstName(parentList,input);
+                changeParentFirstName(parentList,input);
                 filehandler.writeParentToFile(parentList);
                 backToSubMenuParent(input, filehandler);
                 break;
             case 2:
-                Parent.changeParentLastName(parentList,input);
+                changeParentLastName(parentList,input);
                 filehandler.writeParentToFile(parentList);
                 backToSubMenuParent(input, filehandler);
                 break;
             case 3:
-                Parent.changeParentPhoneNumber(parentList,input);
+                changeParentPhoneNumber(parentList,input);
                 filehandler.writeParentToFile(parentList);
                 backToSubMenuParent(input, filehandler);
                 break;
@@ -327,6 +327,28 @@ public class RoskildeFrieBornehave {
         Parent parentObj = new Parent();
 
         filehandler.writeCounters(childObj.getID(), parentObj.getID());
+    }
+
+
+    public static Parent createParent(Scanner input, FileHandler fileHandler){
+        System.out.println("Indtast fornavn: ");
+        String firstName = input.next();
+        System.out.println("Indtast efternavn: ");
+        String lastName = input.next();
+        System.out.println("Hvilket barn skal tilknyttes: ");
+        System.out.println(fileHandler.readChildFromFile());
+        int childID = input.nextInt();
+
+        System.out.println("Indtast telefonnummer: ");
+        int phoneNumber = input.nextInt();
+
+//        Parent newParent = new Parent(firstName, lastName, momordad, phoneNumber);
+        Parent newParent = new Parent(firstName, lastName, childID, phoneNumber);
+        return newParent;
+    }
+
+    public void changeParentFirstName(String newParentFirstName) {
+        this.firstName = newParentFirstName;
     }
 
 }

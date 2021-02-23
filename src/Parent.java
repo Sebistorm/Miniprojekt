@@ -38,22 +38,6 @@ public class Parent {
                 ", phoneNumber=" + phoneNumber + "\n";
     }
 
-    public static Parent createParent(Scanner input, FileHandler fileHandler){
-        System.out.println("Indtast fornavn: ");
-        String firstName = input.next();
-        System.out.println("Indtast efternavn: ");
-        String lastName = input.next();
-        System.out.println("Hvilket barn skal tilknyttes: ");
-        System.out.println(fileHandler.readChildFromFile());
-        int childID = input.nextInt();
-
-        System.out.println("Indtast telefonnummer: ");
-        int phoneNumber = input.nextInt();
-
-//        Parent newParent = new Parent(firstName, lastName, momordad, phoneNumber);
-        Parent newParent = new Parent(firstName, lastName, childID, phoneNumber);
-        return newParent;
-    }
 
 
 
@@ -94,9 +78,7 @@ public class Parent {
         this.phoneNumber = phoneNumber;
     }
 
-    public void changeParentFirstName(String newParentFirstName) {
-        this.firstName = newParentFirstName;
-    }
+
 
     public void changeNextID(int number){
 
