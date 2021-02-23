@@ -135,10 +135,10 @@ public class FileHandler {
             while (fileScanner.hasNextLine()) {
                 String line = fileScanner.nextLine();
                 Scanner lineScan = new Scanner(line);
-
+                int id = lineScan.nextInt();
                 String name = lineScan.next();
 
-                tempStaffList.add(new Staff(name));
+                tempStaffList.add(new Staff(id,name));
             }
 
         } catch (FileNotFoundException e) {
@@ -147,6 +147,8 @@ public class FileHandler {
 
         return tempStaffList;
     }
+
+
 
     public void writeCounters(int childID, int parentID){
         try {

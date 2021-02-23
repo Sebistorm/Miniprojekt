@@ -4,51 +4,36 @@
 //Hashmap
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class StaffWorkSchedule {
 
     int weekNumber;
-    String weekDay;
-    String staff;
+    ArrayList<Staff> mondayStaff;
+    ArrayList<Staff> tuesdayStaff;
+    ArrayList<Staff> wednesdayStaff;
+    ArrayList<Staff> thursdayStaff;
+    ArrayList<Staff> fridayStaff;
 
-
-    public StaffWorkSchedule(int weekNumber, String weekDay, String staff) {
+    public StaffWorkSchedule(int weekNumber, ArrayList<Staff> mondayStaff, ArrayList<Staff> tuesdayStaff, ArrayList<Staff> wednesdayStaff, ArrayList<Staff> thursdayStaff, ArrayList<Staff> fridayStaff) {
         this.weekNumber = weekNumber;
-        this.weekDay = weekDay;
-        this.staff = staff;
-
+        this.mondayStaff = mondayStaff;
+        this.tuesdayStaff = tuesdayStaff;
+        this.wednesdayStaff = wednesdayStaff;
+        this.thursdayStaff = thursdayStaff;
+        this.fridayStaff = fridayStaff;
     }
 
     @Override
     public String toString() {
-        return "StaffWorkSchedule{" +
+        return "StaffWorkSchedule{ \n" +
                 "weekNumber=" + weekNumber +
-                ", weekDay='" + weekDay + '\'' +
-                ", staff='" + staff + '\'' +
+                "\n, mondayStaff=" + mondayStaff +
+                "\n, tuesdayStaff=" + tuesdayStaff +
+                "\n, wednesdayStaff=" + wednesdayStaff +
+                "\n, thursdayStaff=" + thursdayStaff +
+                "\n, fridayStaff=" + fridayStaff +
                 '}';
     }
-
-    public int getWeekNumber() {
-        return weekNumber;
-    }
-
-    public void setWeekNumber(int weekNumber) {
-        this.weekNumber = weekNumber;
-    }
-
-    public String getWeekDay() {
-        return weekDay;
-    }
-
-    public void setWeekDay(String weekDay) {
-        this.weekDay = weekDay;
-    }
-
-    public String getStaff() {
-        return staff;
-    }
-
-    public void setStaff(String staff) {
-        this.staff = staff;
-    }
-
 }

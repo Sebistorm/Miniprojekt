@@ -6,14 +6,28 @@ public class RoskildeFrieBornehave {
 
     public static List<Parent> parentList = new LinkedList<>();
     public static List<Child> childList = new LinkedList<>();
+    public static List<Staff> staffList = new LinkedList<>();
 
     public static void main (String[] args ) {
         Scanner input = new Scanner(System.in);
         FileHandler filehandler = new FileHandler();
 
+        staffList = filehandler.readStaffFromFile();
 
         childList = filehandler.readChildFromFile();
         parentList = filehandler.readParentFromFile();
+
+        System.out.println(staffList);
+
+        Staff newStaff1 = new Staff(1, "Bo" );
+        Staff newStaff2 = new Staff(2, "Daniel" );
+        ArrayList<Staff> list2 = new ArrayList<>();
+        list2.add(newStaff1);
+        list2.add(newStaff2);
+        StaffWorkSchedule newWeek = new StaffWorkSchedule(8, list2, list2, list2, list2, list2);
+
+        System.out.println(newWeek);
+
 
 
         //Sets nextID
