@@ -15,6 +15,7 @@ public class Child {
     private int date;
     private boolean waitList;
 
+    // Constructor til et helt nyt barn
     public Child(String firstName, String lastName, int cprNR, int startDate, String room, int parentID, int date, boolean waitList) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -28,6 +29,7 @@ public class Child {
         nextID++;
     }
 
+    // Constructor når læses fra fil
     public Child(int ID, String firstName, String lastName, int cprNR, int startDate, String room, int parentID, int date, boolean waitList) {
         this.ID = ID;
         this.firstName = firstName;
@@ -38,7 +40,10 @@ public class Child {
         this.parentID = parentID;
         this.date = date;
         this.waitList = waitList;
-        nextID = ID++;
+    }
+
+    public Child() {
+        ID = nextID;
     }
 
     @Override
@@ -150,6 +155,11 @@ public class Child {
 
     public void changeDate(int newDate) {
         this.date = newDate;
+    }
+
+    public void changeNextID(int number){
+
+        nextID = number;
     }
 }
 

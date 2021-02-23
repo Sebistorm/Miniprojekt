@@ -1,10 +1,21 @@
 import java.util.Scanner;
 
 public class Staff {
+    int ID;
+    static int nextID = 1;
     String name;
 
     public Staff(String name) {
         this.name = name;
+    }
+
+    public Staff(int ID, String name) {
+        this.ID = ID;
+        this.name = name;
+    }
+
+    public Staff() {
+        ID = nextID;
     }
 
     @Override

@@ -11,17 +11,19 @@ public class Parent {
 
     private String firstName;
     private String lastName;
-//    private String momordad;
     private int phoneNumber;
 
-//    public Parent(String firstName, String lastName, String momordad, int phoneNumber) {
+//    public Parent(String firstName, String lastName, int phoneNumber) {
     public Parent(String firstName, String lastName, int phoneNumber) {
         ID = nextID;
-        nextID++;
         this.firstName = firstName;
         this.lastName = lastName;
-//        this.momordad = momordad;
         this.phoneNumber = phoneNumber;
+        nextID++;
+    }
+
+    public Parent() {
+        ID = nextID;
     }
 
     @Override
@@ -184,5 +186,10 @@ public class Parent {
 
     public void changeParentFirstName(String newParentFirstName) {
         this.firstName = newParentFirstName;
+    }
+
+    public void changeNextID(int number){
+
+        nextID = number;
     }
 }

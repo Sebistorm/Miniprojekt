@@ -5,16 +5,41 @@ import java.util.*;
 public class RoskildeFrieBornehave {
 
     public static List<Parent> parentList = new LinkedList<>();
+    public static List<Child> childList = new LinkedList<>();
 
     public static void main (String[] args ) {
         Scanner input = new Scanner(System.in);
         FileHandler filehandler = new FileHandler();
 
-//      CREATE PARENT LIST AND READ FROM FILE
-        List<Parent> parentList = new LinkedList<>();
+
+        childList = filehandler.readChildFromFile();
         parentList = filehandler.readParentFromFile();
 
-        login(input, filehandler);
+
+        //Sets nextID
+        Child child = new Child();
+        child.changeNextID(filehandler.readCounters().get(0));
+
+        Parent parent = new Parent();
+        parent.changeNextID(filehandler.readCounters().get(1));
+
+        filehandler.writeParentToFile(parentList);
+
+
+        saveCounters(filehandler);
+
+
+//      CREATE PARENT LIST AND READ FROM FILE
+
+
+
+
+
+        //login(input, filehandler);
+
+
+
+
 
 //        CREATE CHILD LIST AND READ FROM FILE
 //        List<Child> childList = new LinkedList<>();
@@ -121,6 +146,7 @@ public class RoskildeFrieBornehave {
     }
 
     private static void subMenuParent(Scanner input, FileHandler filehandler){
+
         System.out.println("F O R Æ L D E R   M E N U");
         System.out.println("TAST 1: Vis liste over forældre.");
         System.out.println("TAST 2: Opret en ny forælder.");
@@ -133,7 +159,6 @@ public class RoskildeFrieBornehave {
 
         switch (choice) {
             case 1:
-                parentList = filehandler.readParentFromFile();
                 System.out.println(parentList);
                 backToSubMenuParent(input, filehandler);
                 break;
@@ -280,7 +305,14 @@ public class RoskildeFrieBornehave {
         }
         Child newChild = new Child(firstName, lastName, cprNr, startDate, room, parentID, date, waitList);
         return newChild;
+    }
 
+
+    private static void saveCounters(FileHandler filehandler){
+        Child childObj = new Child();
+        Parent parentObj = new Parent();
+
+        filehandler.writeCounters(childObj.getID(), parentObj.getID());
     }
 
 }

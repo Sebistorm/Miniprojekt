@@ -34,7 +34,6 @@ public class FileHandler {
             FileWriter myWriter = new FileWriter(parentData);
             for (int i = 0; i < parentList.size(); i++) {
                 myWriter.write(parentList.get(i).getID() + " " + parentList.get(i).getFirstName() + " "
-//                        + parentList.get(i).getLastName() + " " + parentList.get(i).getMomordad() + " "
                         + parentList.get(i).getLastName() + " "
                         + parentList.get(i).getPhoneNumber());
                 if (i != parentList.size() - 1) {
@@ -148,7 +147,45 @@ public class FileHandler {
 
         return tempStaffList;
     }
-}
 
+    public void writeCounters(int childID, int parentID){
+        try {
+            File counters = new File("counters.txt");
+            FileWriter myWriter = new FileWriter(counters);
+
+            String childIDStr = String.valueOf(childID);
+            String parentIDStr = String.valueOf(parentID);
+
+            myWriter.write(childIDStr + "\n" + parentIDStr);
+
+            myWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<Integer> readCounters(){
+        ArrayList<Integer> counters = new ArrayList<>();
+
+        try {
+            File counterData = new File("counters.txt");
+            Scanner fileScanner = new Scanner(counterData);
+
+            // første tal i array vil være child Counter.
+
+            while(fileScanner.hasNextLine()){
+                String line = fileScanner.nextLine();
+                Scanner lineScan = new Scanner(line);
+
+                counters.add(lineScan.nextInt());
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return counters;
+    }
+}
 
 //
