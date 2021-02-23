@@ -11,18 +11,17 @@ public class Child {
     private int cprNR;
     private int startDate;
     private String room;
-    private int parentID;
     private int date;
     private boolean waitList;
 
     // Constructor til et helt nyt barn
-    public Child(String firstName, String lastName, int cprNR, int startDate, String room, int parentID, int date, boolean waitList) {
+    public Child(String firstName, String lastName, int cprNR, int startDate, String room, int date, boolean waitList) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.cprNR = cprNR;
         this.startDate = startDate;
         this.room = room;
-        this.parentID = parentID;
+
         this.date = date;
         this.waitList = waitList;
         ID = nextID;
@@ -30,14 +29,13 @@ public class Child {
     }
 
     // Constructor når læses fra fil
-    public Child(int ID, String firstName, String lastName, int cprNR, int startDate, String room, int parentID, int date, boolean waitList) {
+    public Child(int ID, String firstName, String lastName, int cprNR, int startDate, String room, int date, boolean waitList) {
         this.ID = ID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.cprNR = cprNR;
         this.startDate = startDate;
         this.room = room;
-        this.parentID = parentID;
         this.date = date;
         this.waitList = waitList;
     }
@@ -55,7 +53,7 @@ public class Child {
                 ", cprNR=" + cprNR +
                 ", startDate=" + startDate +
                 ", room='" + room + '\'' +
-                ", parentID=" + parentID +
+//                ", parentID=" + parentID +
                 ", date=" + date +
                 ", waitList=" + waitList + "\n";
     }
@@ -103,15 +101,15 @@ public class Child {
     public void setRoom(String room) {
         this.room = room;
     }
+    /*
+        public int getParentID() {
+            return parentID;
+        }
 
-    public int getParentID() {
-        return parentID;
-    }
-
-    public void setParentID(int parentID) {
-        this.parentID = parentID;
-    }
-
+        public void setParentID(int parentID) {
+            this.parentID = parentID;
+        }
+    */
     public int getDate() {
         return date;
     }
@@ -149,9 +147,10 @@ public class Child {
         this.room = newRoom;
     }
 
-    public void changeParentID(int parentID) {
+/*    public void changeParentID(int parentID) {
         this.parentID = parentID;
     }
+*/
 
     public void changeDate(int newDate) {
         this.date = newDate;
