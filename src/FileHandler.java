@@ -84,7 +84,6 @@ public class FileHandler {
                 int cprNumber = lineScan.nextInt();
                 int startDate = lineScan.nextInt();
                 String room = lineScan.next();
-                int parentID = lineScan.nextInt();
                 int date = lineScan.nextInt();
                 boolean waitlist = lineScan.nextBoolean();
 
