@@ -1,8 +1,0 @@
-1 jørgen Bedre 1321321 2 yellow 2 2 true
-3 grete Hansen 1321321 2 yellow 2 2 true
-4 ib Bedre 1321321 2 yellow 2 2 true
-5 knud Hansen 1321321 2 yellow 2 2 true
-9 l l 544 4 l 2 2 true
-10 h h 544 4 l 2 2 true
-11 l l 544 4 l 2 2 true
-12 h h 544 4 l 2 2 true
