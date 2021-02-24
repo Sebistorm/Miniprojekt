@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Staff {
     int ID;
     //static int nextID = 1;
-    String name;
+    private String name;
 
     public Staff(int ID, String name) {
         this.ID = ID;
@@ -27,6 +27,10 @@ public class Staff {
 
     public String getName() {
         return name;
+    }
+
+    public int getId() {
+        return ID;
     }
 
     /*

@@ -7,6 +7,7 @@ public class RoskildeFrieBornehave {
     public static List<Parent> parentList = new LinkedList<>();
     public static List<Child> childList = new LinkedList<>();
     public static List<Staff> staffList = new LinkedList<>();
+    public static List<StaffWorkSchedule> staffWorkSchedule = new LinkedList<>();
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -24,9 +25,12 @@ public class RoskildeFrieBornehave {
         ArrayList<Staff> list2 = new ArrayList<>();
         list2.add(newStaff1);
         list2.add(newStaff2);
-        StaffWorkSchedule newWeek = new StaffWorkSchedule(8, list2, list2, list2, list2, list2);
+        //StaffWorkSchedule newWeek = new StaffWorkSchedule(8, list2, list2, list2, list2, list2);
 
-        System.out.println(newWeek);
+        //System.out.println(newWeek);
+        makeSchedule(input, staffList, staffWorkSchedule);
+        System.out.println(staffWorkSchedule);
+        System.exit(0);
 
         //Sets nextID
         Child child = new Child();
@@ -603,6 +607,138 @@ public class RoskildeFrieBornehave {
 //        Parent newParent = new Parent(firstName, lastName, momordad, phoneNumber);
         Parent newParent = new Parent(firstName, lastName, childID, phoneNumber);
         return newParent;
+    }
+
+
+    public static void makeSchedule (Scanner input, List<Staff> list, List<StaffWorkSchedule> plan) {
+        System.out.println("Lav ny vagtplan");
+        System.out.println("Skriv hvilken uge vagtplanen gælder for");
+        int week = input.nextInt();
+        // mandag
+        System.out.println("tilføj personale til mandag:");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(i + " " + list.get(i).getName());
+        }
+        boolean moreStaffMonday = true;
+        ArrayList<String> mondayShift = new ArrayList<>();
+        while (moreStaffMonday) {
+            System.out.println("Tilføj personalet ved at indtaste deres nummer");
+            int userChoice = input.nextInt();
+            for (int i = 0; i < list.size(); i++) {
+                if (i == userChoice) {
+                    mondayShift.add(list.get(i).getName());
+                    break;
+                }
+            }
+            System.out.println("Vil du tilføje mere personale? ja/nej");
+            String userAnswer = input.next();
+            if (userAnswer.equalsIgnoreCase("nej")) {
+                moreStaffMonday = false;
+            }
+
+        }
+        // Tirsdag
+        System.out.println("tilføj personale til Tirsdag:");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(i + " " + list.get(i).getName());
+        }
+        boolean moreStaffTuesday = true;
+        ArrayList<String> tuesdayShift = new ArrayList<>();
+        while (moreStaffTuesday) {
+            System.out.println("Tilføj personalet ved at indtaste deres nummer");
+            int userChoice = input.nextInt();
+            for (int i = 0; i < list.size(); i++) {
+                if (i == userChoice) {
+                    tuesdayShift.add(list.get(i).getName());
+                    break;
+                }
+            }
+            System.out.println("Vil du tilføje mere personale? ja/nej");
+            String userAnswer = input.next();
+            if (userAnswer.equalsIgnoreCase("nej")) {
+                moreStaffTuesday = false;
+            }
+
+        }
+        // Onsdag
+        System.out.println("tilføj personale til Onsdag:");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(i + " " + list.get(i).getName());
+        }
+        boolean moreStaffWednesday = true;
+        ArrayList<String> wednesdayShift = new ArrayList<>();
+        while (moreStaffWednesday) {
+            System.out.println("Tilføj personalet ved at indtaste deres nummer");
+            int userChoice = input.nextInt();
+            for (int i = 0; i < list.size(); i++) {
+                if (i == userChoice) {
+                    wednesdayShift.add(list.get(i).getName());
+                    break;
+                }
+            }
+            System.out.println("Vil du tilføje mere personale? ja/nej");
+            String userAnswer = input.next();
+            if (userAnswer.equalsIgnoreCase("nej")) {
+                moreStaffWednesday = false;
+            }
+        }
+
+        // Torsdag
+        System.out.println("tilføj personale til Torsdag:");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(i + " " + list.get(i).getName());
+        }
+        boolean moreStaffThursday = true;
+        ArrayList<String> thurdayShift = new ArrayList<>();
+        while (moreStaffThursday) {
+            System.out.println("Tilføj personalet ved at indtaste deres nummer");
+            int userChoice = input.nextInt();
+            for (int i = 0; i < list.size(); i++) {
+                if (i == userChoice) {
+                    thurdayShift.add(list.get(i).getName());
+                    break;
+                }
+            }
+            System.out.println("Vil du tilføje mere personale? ja/nej");
+            String userAnswer = input.next();
+            if (userAnswer.equalsIgnoreCase("nej")) {
+                moreStaffThursday = false;
+            }
+        }
+
+        // Fridag
+        System.out.println("tilføj personale til Fridag:");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(i + " " + list.get(i).getName());
+        }
+        boolean moreStaffFriday = true;
+        ArrayList<String> fridayShift = new ArrayList<>();
+        while (moreStaffFriday) {
+            System.out.println("Tilføj personalet ved at indtaste deres nummer");
+            int userChoice = input.nextInt();
+            for (int i = 0; i < list.size(); i++) {
+                if (i == userChoice) {
+                    fridayShift.add(list.get(i).getName());
+                    break;
+                }
+            }
+            System.out.println("Vil du tilføje mere personale? ja/nej");
+            String userAnswer = input.next();
+            if (userAnswer.equalsIgnoreCase("nej")) {
+                moreStaffFriday = false;
+            }
+        }
+
+        StaffWorkSchedule newWeek = new StaffWorkSchedule(week, mondayShift, tuesdayShift, wednesdayShift, thurdayShift, fridayShift);
+        plan.add(newWeek);
+        /*
+        ArrayList<Staff> list2 = new ArrayList<>();
+        list2.add(newStaff1);
+        list2.add(newStaff2);
+        StaffWorkSchedule newWeek = new StaffWorkSchedule(8, list2, list2, list2, list2, list2);
+        */
+
+
     }
 
 
