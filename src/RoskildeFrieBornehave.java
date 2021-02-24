@@ -41,7 +41,7 @@ public class RoskildeFrieBornehave {
 
 
         saveCounters(filehandler);
-        subMenuEditParent(input, filehandler);
+        subMenuStaff(input, filehandler);
 
 
 //      CREATE PARENT LIST AND READ FROM FILE
@@ -101,9 +101,6 @@ public class RoskildeFrieBornehave {
         //CREATE STAFF
 //        staffList.add(Staff.createStaff(input));
 //        filehandler.writeStaffToFile(staffList);
-        createStaff();
-        deleteStaff();
-        
 
     }
 
@@ -124,7 +121,7 @@ public class RoskildeFrieBornehave {
         }
     }
 
-    private static void createStaff(Scanner input) {
+    private static Staff createStaff(Scanner input) {
         System.out.println("Indtast ønsket medarbejder ID nr.: ");
         int id = input.nextInt();
         System.out.println("Enter first name: ");
@@ -133,8 +130,8 @@ public class RoskildeFrieBornehave {
         String lastName = input.next();
         System.out.println("Indtast telefon nr.: ");
         int phonenr = input.nextInt();
-        Child newChild = new Child(id, firstName, lastName, phonenr);
-        return newChild;
+        Staff newStaff = new Staff(id, firstName, lastName, phonenr);
+        return newStaff;
     }
 
 
@@ -191,7 +188,7 @@ public class RoskildeFrieBornehave {
         System.out.println("TAST 1: Vis liste over staff.");
         System.out.println("TAST 2: Opret ny staff.");
         System.out.println("TAST 3: Rediger oplysninger om en medarbejder.");
-        System.out.println("TAST 4: Slet et barn.");
+        System.out.println("TAST 4: Slet en medarbejder.");
         System.out.println("TAST 9: HOVEDMENU");
         System.out.println("TAST 0: Afslut programmet");
 
@@ -202,25 +199,18 @@ public class RoskildeFrieBornehave {
                 System.out.println(staffList);
                 break;
             case 2:
+                staffList.add(createStaff(input));
+                filehandler.writeStaffToFile(staffList);
+                subMenuStaff(input, filehandler);
                 break;
             case 3:
-                subMenuEditStaff(input, filehandler);
+                //subMenuEditStaff(input, filehandler);
+                break;
+            case 4:
+
         }
     }
 
-    private static void subMenuEditStaff(Scanner input, FileHandler filehandler){
-        System.out.println("R E D I G E R   S T A F F");
-        System.out.println("TAST 1: Skift fornavn på en medarbejder.");
-        System.out.println("TAST 2: Skift efternavn på en medarbejder.");
-        System.out.println("TAST 3: Skift CPR på en medarbejder.");
-        System.out.println("TAST 4: Skift start dato på en medarbejder.");
-        System.out.println("TAST 5: Skift rum på en medarbejder.");
-        System.out.println("TAST 6: Skift indmeldnings dato på en medarbejder.");
-        System.out.println("TAST 7: Skift venteliste status på en medarbejder.");
-
-        System.out.println("TAST 9: Tilbage til børne menu");
-        System.out.println("TAST 0: Afslut programmet");
-    }
 
     private static void subMenuChild(Scanner input, FileHandler filehandler) {
         System.out.println("B Ø R N E   M E N U");
