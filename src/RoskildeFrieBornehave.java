@@ -142,12 +142,97 @@ public class RoskildeFrieBornehave {
     }
 
     private static void subMenuChild(Scanner input, FileHandler filehandler) {
+
+        System.out.println("B Ø R N E   M E N U");
+        System.out.println("TAST 1: Vis liste over børn.");
+        System.out.println("TAST 2: Opret et ny barn.");
+        System.out.println("TAST 3: Rediger oplysninger om et barn.");
+        System.out.println("TAST 4: Slet et barn.");
+        System.out.println("TAST 9: HOVEDMENU");
+        System.out.println("TAST 0: Afslut programmet");
+
         int choice = input.nextInt();
 
         switch (choice) {
             case 1:
+                System.out.println(childList);
+                break;
+            case 2:
+                childList.add(createChild(input));
+                filehandler.writeChildToFile(childList);
+                saveCounters(filehandler);
+                subMenuChild(input, filehandler);
+                break;
+            case 3:
+                subMenuEditChild(input, filehandler);
+            case 4:
+                deleteChild(childList, input);
+                filehandler.writeChildToFile(childList);
+                subMenuChild(input, filehandler);
+            case 9:
+                menuManager(input, filehandler);
+                break;
+            case 0:
+                System.out.println("PRogrammet er nu afsluttet");
+                System.exit(-1);
+        }
 
+    }
 
+    private static void subMenuEditChild(Scanner input, FileHandler filehandler){
+        System.out.println("R E D I G E R   B Ø R N");
+        System.out.println("TAST 1: Skift fornavn på et barn.");
+        System.out.println("TAST 2: Skift efternavn på et barn.");
+        System.out.println("TAST 3: Skift CPR på et barn.");
+        System.out.println("TAST 4: Tilbage til børnemenu");
+        System.out.println("TAST 9: HOVEDMENU");
+        System.out.println("TAST 0: Afslut programmet");
+
+        int choice = input.nextInt();
+
+        int chosenID;
+
+        switch (choice) {
+            case 1:
+                System.out.println(childList);
+                System.out.println("Vælg id på ønsket barn: ");
+                chosenID = input.nextInt();
+                for (int i = 0; i < childList.size(); i++){
+                    if (childList.get(i).getID()==chosenID){
+                        System.out.println("Indtast nyt navn for " + childList.get(i).getFirstName() + ": " );
+                        childList.get(i).setFirstName(input.next());
+                        break;
+                    }
+                }
+            case 2:
+                System.out.println(childList);
+                System.out.println("Vælg id på ønsket barn: ");
+                chosenID = input.nextInt();
+                for (int i = 0; i < childList.size(); i++){
+                    if (childList.get(i).getID() == chosenID) {
+                        System.out.println("Indtast nyt efternavn for " + childList.get(i).getLastName() + ": ");
+                        childList.get(i).setLastName(input.next());
+                        break;
+                    }
+                }
+                filehandler.writeChildToFile(childList);
+                subMenuEditChild(input, filehandler);
+                break;
+            case 3:
+                System.out.println(childList);
+                System.out.println("Vælg id på ønsket barn: ");
+                chosenID = input.nextInt();
+                for (int i = 0; i < childList.size(); i++){
+                    if(childList.get(i).getID() == chosenID){
+                        System.out.println(childList.get(i).getFirstName() + " er valgt.  \n");
+                        System.out.println("Indtast nyt CPR nummer: ");
+                        childList.get(i).setCprNR(input.nextInt());
+                        break;
+                    }
+                }
+                filehandler.writeParentToFile(parentList);
+                backToSubMenuParent(input, filehandler);
+                break;
         }
 
     }
@@ -172,6 +257,7 @@ public class RoskildeFrieBornehave {
             case 2:
                 parentList.add(createParent(input, filehandler));
                 filehandler.writeParentToFile(parentList);
+                saveCounters(filehandler);
                 backToSubMenuParent(input, filehandler);
                 break;
             case 3:
@@ -186,9 +272,9 @@ public class RoskildeFrieBornehave {
             case 0:
                 System.out.println("Programmet er nu afsluttet.");
                 System.exit(-1);
-
         }
     }
+
     private static void subMenuEditParent(Scanner input, FileHandler filehandler) {
         System.out.println("R E D I G E R   F O R Æ L D E R");
         System.out.println("TAST 1: Skift fornavn på en forælder.");
@@ -200,6 +286,7 @@ public class RoskildeFrieBornehave {
 
         int choice = input.nextInt();
 
+        int chosenID;
         switch (choice) {
             case 1:
                 //print liste over forældre
@@ -277,6 +364,8 @@ public class RoskildeFrieBornehave {
 
         }
     }
+
+
 
     private static void deleteChild(List<Child> list, Scanner input) {
         Iterator<Child> it = list.iterator();
