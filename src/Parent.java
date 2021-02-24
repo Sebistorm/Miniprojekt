@@ -50,6 +50,9 @@ public class Parent {
         return firstName;
     }
 
+    public void changeParentFirstName(String newParentFirstName) {
+        this.firstName = newParentFirstName; }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -89,3 +92,4 @@ public class Parent {
         return childID;
     }
 }
+

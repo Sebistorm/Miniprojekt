@@ -40,6 +40,7 @@ public class RoskildeFrieBornehave {
 
 
         saveCounters(filehandler);
+        subMenuEditParent(input, filehandler);
 
 
 //      CREATE PARENT LIST AND READ FROM FILE
@@ -170,7 +171,7 @@ public class RoskildeFrieBornehave {
                 backToSubMenuParent(input, filehandler);
                 break;
             case 2:
-                parentList.add(createParent(input));
+                parentList.add(createParent(input, filehandler));
                 filehandler.writeParentToFile(parentList);
                 backToSubMenuParent(input, filehandler);
                 break;
@@ -202,17 +203,48 @@ public class RoskildeFrieBornehave {
 
         switch (choice) {
             case 1:
-                changeParentFirstName(parentList, input);
+                //print liste over forældre
+                System.out.println(parentList);
+                System.out.println("Vælg id på ønsket forældre: ");
+                chosenID = input.nextInt();
+                for (int i = 0; i < parentList.size(); i++){
+                    if (parentList.get(i).getID()==chosenID){
+                        System.out.println("Indtast nyt navn for " + parentList.get(i).getFirstName() + ": " );
+                        parentList.get(i).setFirstName(input.next());
+                        break;
+                    }
+                }
                 filehandler.writeParentToFile(parentList);
                 backToSubMenuParent(input, filehandler);
                 break;
             case 2:
-                changeParentLastName(parentList, input);
+                System.out.println(parentList);
+                System.out.println("Vælg id på ønsket forældre: ");
+                chosenID = input.nextInt();
+                for (int i = 0; i < parentList.size(); i++){
+                    if (parentList.get(i).getID() == chosenID) {
+                        System.out.println("Indtast nyt efternavn for " + parentList.get(i).getLastName() + ": ");
+                        parentList.get(i).setLastName(input.next());
+                        break;
+                    }
+                }
                 filehandler.writeParentToFile(parentList);
                 backToSubMenuParent(input, filehandler);
                 break;
             case 3:
-                changeParentPhoneNumber(parentList, input);
+                System.out.println(parentList);
+                System.out.println("Vælg id på ønsket forældre: ");
+                chosenID = input.nextInt();
+                    for (int i = 0; i < parentList.size(); i++){
+                        if(parentList.get(i).getID() == chosenID){
+                            System.out.println(parentList.get(i).getFirstName() + " er valgt.  \n");
+                            System.out.println("Indtast nyt telefonnummer: ");
+                            parentList.get(i).setPhoneNumber(input.nextInt());
+                            break;
+
+                        }
+
+                    }
                 filehandler.writeParentToFile(parentList);
                 backToSubMenuParent(input, filehandler);
                 break;
@@ -427,8 +459,6 @@ public class RoskildeFrieBornehave {
         int startDate = input.nextInt();
         System.out.println(" Stue: Yellow, red, green");
         String room = input.next();
-        System.out.println("Parent id: ");
-        int parentID = input.nextInt();
         System.out.println("Current date: ");
         int date = input.nextInt();
         System.out.println("Add child to waitlist? y/n");
@@ -437,7 +467,7 @@ public class RoskildeFrieBornehave {
         if (waitListAnswer.equalsIgnoreCase("y")) {
             waitList = true;
         }
-        Child newChild = new Child(firstName, lastName, cprNr, startDate, room, parentID, date, waitList);
+        Child newChild = new Child(firstName, lastName, cprNr, startDate, room, date, waitList);
         return newChild;
     }
 
@@ -467,7 +497,5 @@ public class RoskildeFrieBornehave {
         return newParent;
     }
 
-    public void changeParentFirstName(String newParentFirstName) {
-        this.firstName = newParentFirstName;
-    }
+
 }
