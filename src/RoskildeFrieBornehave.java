@@ -19,8 +19,8 @@ public class RoskildeFrieBornehave {
 
         System.out.println(staffList);
 
-        Staff newStaff1 = new Staff(1, "Bo");
-        Staff newStaff2 = new Staff(2, "Daniel");
+        Staff newStaff1 = new Staff(1, "Bo", "Madsen", 12345678);
+        Staff newStaff2 = new Staff(2, "Daniel", "Jensen", 44332211);
         ArrayList<Staff> list2 = new ArrayList<>();
         list2.add(newStaff1);
         list2.add(newStaff2);
@@ -99,8 +99,42 @@ public class RoskildeFrieBornehave {
         //CREATE STAFF
 //        staffList.add(Staff.createStaff(input));
 //        filehandler.writeStaffToFile(staffList);
+        createStaff();
+        deleteStaff();
+        
 
     }
+
+    private static void deleteStaff(List<Staff> list, Scanner input) {
+        Iterator<Staff> it = list.iterator();
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("Medarbejder nr.: " + list.get(i).getID());
+            System.out.println("Medarbejder navn: " + list.get(i).getFirstName());
+        }
+        System.out.println("Indtast id'et på den medarbejder der skal fjernes: ");
+        int chosenID = input.nextInt();
+
+        while (it.hasNext()) {
+            Staff index = it.next();
+            if (index.getID() == chosenID) {
+                it.remove();
+            }
+        }
+    }
+
+    private static void createStaff(Scanner input) {
+        System.out.println("Indtast ønsket medarbejder ID nr.: ");
+        int id = input.nextInt();
+        System.out.println("Enter first name: ");
+        String firstName = input.next();
+        System.out.println("Enter last name: ");
+        String lastName = input.next();
+        System.out.println("Indtast telefon nr.: ");
+        int phonenr = input.nextInt();
+        Child newChild = new Child(id, firstName, lastName, phonenr);
+        return newChild;
+    }
+
 
     public static void login(Scanner input, FileHandler filehandler) {
         System.out.println("");
@@ -607,3 +641,4 @@ public class RoskildeFrieBornehave {
 
 
 }
+
