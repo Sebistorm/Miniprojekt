@@ -7,6 +7,7 @@ public class RoskildeFrieBornehave {
     public static List<Parent> parentList = new LinkedList<>();
     public static List<Child> childList = new LinkedList<>();
     public static List<Staff> staffList = new LinkedList<>();
+    public static List<StaffWorkSchedule> staffWorkSchedule = new LinkedList<>();
 
     public static boolean isLeader = false;
 
@@ -152,6 +153,66 @@ public class RoskildeFrieBornehave {
             login(input, filehandler);
         } else {
             menuManager(input, filehandler);
+        }
+    }
+
+    private static void subMenuEditStaff(Scanner input, FileHandler filehandler) {
+        System.out.println("R E D I G E R   M E D A R B E J D E R");
+        System.out.println("TAST 1: Skift fornavn");
+        System.out.println("TAST 2: Skift efternavn");
+        System.out.println("TAST 3: Skift Telefon nr.");
+        System.out.println("TAST 9: Tilbage til medarbejder menu");
+        System.out.println("TAST 0: Afslut programmet");
+        int choice = input.nextInt();
+        int chosenID;
+        switch (choice) {
+            case 1:
+                System.out.println(staffList);
+                System.out.println("Vælg id på medarbejderen: ");
+                chosenID = input.nextInt();
+                for (int i = 0; i < staffList.size(); i++) {
+                    if (staffList.get(i).getID() == chosenID) {
+                        System.out.println("Indtast nyt navn for " + staffList.get(i).getFirstName() + ": ");
+                        staffList.get(i).setFirstName(input.next());
+                        break;
+                    }
+                }
+                filehandler.writeStaffToFile(staffList);
+                subMenuEditStaff(input, filehandler);
+            case 2:
+                System.out.println(staffList);
+                System.out.println("Vælg id på på medarbejderen: ");
+                chosenID = input.nextInt();
+                for (int i = 0; i < staffList.size(); i++) {
+                    if (staffList.get(i).getID() == chosenID) {
+                        System.out.println("Indtast nyt efternavn for " + staffList.get(i).getLastName() + ": ");
+                        staffList.get(i).setLastName(input.next());
+                        break;
+                    }
+                }
+                filehandler.writeStaffToFile(staffList);
+                subMenuEditStaff(input, filehandler);
+                break;
+            case 3:
+                System.out.println(staffList);
+                System.out.println("Vælg id på medarbejder: ");
+                chosenID = input.nextInt();
+                for (int i = 0; i < staffList.size(); i++) {
+                    if (staffList.get(i).getID() == chosenID) {
+                        System.out.println(staffList.get(i).getFirstName() + " er valgt.  \n");
+                        System.out.println("Indtast nyt telefonnummer: ");
+                        staffList.get(i).setPhoneNumber(input.nextInt());
+                        break;
+                    }
+                }
+                filehandler.writeStaffToFile(staffList);
+                subMenuEditStaff(input, filehandler);
+                break;
+            case 9:
+                menuManager(input, filehandler);
+            case 0:
+                System.out.println("Programmet er afsluttet");
+                System.exit(-1);
         }
     }
 
