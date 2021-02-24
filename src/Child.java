@@ -1,9 +1,11 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.Scanner;
 
 // MANGLER VENTELISTE
 
 public class Child {
-    private int ID;
+    private final int ID;
     static int nextID = 1;
 
     private String firstName;
