@@ -54,7 +54,7 @@ public class FileHandler {
 
             FileWriter myWriter = new FileWriter(staffData);
             for (int i = 0; i < staffList.size(); i++) {
-                myWriter.write(staffList.get(i).getName());
+                myWriter.write(staffList.get(i).getID() + " " + staffList.get(i).getFirstName() + " " + staffList.get(i).getLastName() + " " + staffList.get(i).getPhoneNumber());
                 if (i != staffList.size() - 1) {
                     myWriter.write("\n");
                 }
@@ -135,9 +135,11 @@ public class FileHandler {
                 String line = fileScanner.nextLine();
                 Scanner lineScan = new Scanner(line);
                 int id = lineScan.nextInt();
-                String name = lineScan.next();
+                String firstName = lineScan.next();
+                String lastName = lineScan.next();
+                int phonenr = lineScan.nextInt();
 
-                tempStaffList.add(new Staff(id,name));
+                tempStaffList.add(new Staff(id,firstName, lastName, phonenr));
             }
 
         } catch (FileNotFoundException e) {
