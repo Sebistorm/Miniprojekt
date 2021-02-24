@@ -138,7 +138,7 @@ public class FileHandler {
                 int id = lineScan.nextInt();
                 String name = lineScan.next();
 
-                tempStaffList.add(new Staff(id,name));
+                tempStaffList.add(new Staff(id,firstName, lastName, phonenr));
             }
 
         } catch (FileNotFoundException e) {
