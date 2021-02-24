@@ -10,13 +10,13 @@ import java.util.Arrays;
 public class StaffWorkSchedule {
 
     int weekNumber;
-    ArrayList<Staff> mondayStaff;
-    ArrayList<Staff> tuesdayStaff;
-    ArrayList<Staff> wednesdayStaff;
-    ArrayList<Staff> thursdayStaff;
-    ArrayList<Staff> fridayStaff;
+    ArrayList<String> mondayStaff;
+    ArrayList<String> tuesdayStaff;
+    ArrayList<String> wednesdayStaff;
+    ArrayList<String> thursdayStaff;
+    ArrayList<String> fridayStaff;
 
-    public StaffWorkSchedule(int weekNumber, ArrayList<Staff> mondayStaff, ArrayList<Staff> tuesdayStaff, ArrayList<Staff> wednesdayStaff, ArrayList<Staff> thursdayStaff, ArrayList<Staff> fridayStaff) {
+    public StaffWorkSchedule(int weekNumber, ArrayList<String> mondayStaff, ArrayList<String> tuesdayStaff, ArrayList<String> wednesdayStaff, ArrayList<String> thursdayStaff, ArrayList<String> fridayStaff) {
         this.weekNumber = weekNumber;
         this.mondayStaff = mondayStaff;
         this.tuesdayStaff = tuesdayStaff;
