@@ -32,7 +32,7 @@ public class RoskildeFrieBornehave {
         //System.out.println(newWeek);
         makeSchedule(input, staffList, staffWorkSchedule);
         System.out.println(staffWorkSchedule);
-        System.exit(0);
+
 
         //Sets nextID
         Child child = new Child();
@@ -594,7 +594,7 @@ public class RoskildeFrieBornehave {
         // mandag
         System.out.println("tilføj personale til mandag:");
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + " " + list.get(i).getName());
+            System.out.println(i + " " + list.get(i).getFirstName() + " " + list.get(i).getLastName());
         }
         boolean moreStaffMonday = true;
         ArrayList<String> mondayShift = new ArrayList<>();
@@ -603,7 +603,7 @@ public class RoskildeFrieBornehave {
             int userChoice = input.nextInt();
             for (int i = 0; i < list.size(); i++) {
                 if (i == userChoice) {
-                    mondayShift.add(list.get(i).getName());
+                    mondayShift.add(list.get(i).getFirstName() + list.get(i).getLastName());
                     break;
                 }
             }
@@ -617,7 +617,7 @@ public class RoskildeFrieBornehave {
         // Tirsdag
         System.out.println("tilføj personale til Tirsdag:");
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + " " + list.get(i).getName());
+            System.out.println(i + " " + list.get(i).getFirstName() + " " + list.get(i).getLastName());
         }
         boolean moreStaffTuesday = true;
         ArrayList<String> tuesdayShift = new ArrayList<>();
@@ -626,7 +626,7 @@ public class RoskildeFrieBornehave {
             int userChoice = input.nextInt();
             for (int i = 0; i < list.size(); i++) {
                 if (i == userChoice) {
-                    tuesdayShift.add(list.get(i).getName());
+                    tuesdayShift.add(list.get(i).getFirstName() + list.get(i).getLastName());
                     break;
                 }
             }
@@ -640,7 +640,7 @@ public class RoskildeFrieBornehave {
         // Onsdag
         System.out.println("tilføj personale til Onsdag:");
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + " " + list.get(i).getName());
+            System.out.println(i + " " + list.get(i).getFirstName() + " " + list.get(i).getLastName());
         }
         boolean moreStaffWednesday = true;
         ArrayList<String> wednesdayShift = new ArrayList<>();
@@ -649,7 +649,7 @@ public class RoskildeFrieBornehave {
             int userChoice = input.nextInt();
             for (int i = 0; i < list.size(); i++) {
                 if (i == userChoice) {
-                    wednesdayShift.add(list.get(i).getName());
+                    wednesdayShift.add(list.get(i).getFirstName() + list.get(i).getLastName());
                     break;
                 }
             }
@@ -663,7 +663,7 @@ public class RoskildeFrieBornehave {
         // Torsdag
         System.out.println("tilføj personale til Torsdag:");
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + " " + list.get(i).getName());
+            System.out.println(i + " " + list.get(i).getFirstName() + " " + list.get(i).getLastName());
         }
         boolean moreStaffThursday = true;
         ArrayList<String> thurdayShift = new ArrayList<>();
@@ -672,7 +672,7 @@ public class RoskildeFrieBornehave {
             int userChoice = input.nextInt();
             for (int i = 0; i < list.size(); i++) {
                 if (i == userChoice) {
-                    thurdayShift.add(list.get(i).getName());
+                    thurdayShift.add(list.get(i).getFirstName() + list.get(i).getLastName());
                     break;
                 }
             }
@@ -686,7 +686,7 @@ public class RoskildeFrieBornehave {
         // Fridag
         System.out.println("tilføj personale til Fridag:");
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + " " + list.get(i).getName());
+            System.out.println(i + " " + list.get(i).getFirstName() + " " + list.get(i).getLastName());
         }
         boolean moreStaffFriday = true;
         ArrayList<String> fridayShift = new ArrayList<>();
@@ -695,7 +695,7 @@ public class RoskildeFrieBornehave {
             int userChoice = input.nextInt();
             for (int i = 0; i < list.size(); i++) {
                 if (i == userChoice) {
-                    fridayShift.add(list.get(i).getName());
+                    fridayShift.add(list.get(i).getFirstName() + list.get(i).getLastName());
                     break;
                 }
             }
@@ -708,12 +708,6 @@ public class RoskildeFrieBornehave {
 
         StaffWorkSchedule newWeek = new StaffWorkSchedule(week, mondayShift, tuesdayShift, wednesdayShift, thurdayShift, fridayShift);
         plan.add(newWeek);
-        /*
-        ArrayList<Staff> list2 = new ArrayList<>();
-        list2.add(newStaff1);
-        list2.add(newStaff2);
-        StaffWorkSchedule newWeek = new StaffWorkSchedule(8, list2, list2, list2, list2, list2);
-        */
 
 
     }
