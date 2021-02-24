@@ -28,7 +28,6 @@ public class RoskildeFrieBornehave {
 
         System.out.println(newWeek);
 
-
         //Sets nextID
         Child child = new Child();
         child.changeNextID(filehandler.readCounters().get(0));
@@ -296,6 +295,25 @@ public class RoskildeFrieBornehave {
         }
     }
 
+    private static void deleteParent(List<Parent> list, Scanner input) {
+        Iterator<Parent> it = list.iterator();
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("Forælder ID " + list.get(i).getID());
+            System.out.println("Forælder navn " + list.get(i).getFirstName());
+        }
+        System.out.println("Indtast id'et på det parent på som skal slettes");
+        int chosenID = input.nextInt();
+
+        while (it.hasNext()) {
+            Parent index = it.next();
+            if (index.getID() == chosenID) {
+                it.remove();
+            }
+        }
+    }
+
+
+
     private static void changeFirstName(List<Child> list, Scanner input) {
         // print relevante oplysninger til bruger
         for (int i = 0; i < list.size(); i++) {
@@ -471,6 +489,7 @@ public class RoskildeFrieBornehave {
         return newChild;
     }
 
+ //   private static Child
 
     private static void saveCounters(FileHandler filehandler) {
         Child childObj = new Child();

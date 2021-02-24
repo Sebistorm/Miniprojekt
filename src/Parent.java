@@ -39,8 +39,6 @@ public class Parent {
     }
 
 
-
-
     // GETTERS AND SETTERS //
     public int getID() {
         return ID;
