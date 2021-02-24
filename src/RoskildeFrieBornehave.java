@@ -8,6 +8,8 @@ public class RoskildeFrieBornehave {
     public static List<Child> childList = new LinkedList<>();
     public static List<Staff> staffList = new LinkedList<>();
 
+    public static boolean isLeader = false;
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         FileHandler filehandler = new FileHandler();
@@ -137,7 +139,6 @@ public class RoskildeFrieBornehave {
 
 
     public static void login(Scanner input, FileHandler filehandler) {
-        System.out.println("");
         System.out.println("-------------------------------------");
         System.out.println("             L O G I N ");
         System.out.println("-------------------------------------");
@@ -161,6 +162,10 @@ public class RoskildeFrieBornehave {
         System.out.println("H O V E D M E N U");
 
         System.out.println("TAST 1 - FORÆLDER");
+        System.out.println("TAST 2 - BØRN");
+        if (isLeader){
+            System.out.println("TAST 3 - STAFF");
+        }
 
         System.out.println("TAST 0: Afslut programmet");
 
@@ -169,14 +174,55 @@ public class RoskildeFrieBornehave {
         switch (choice) {
             case 1:
                 subMenuParent(input, filehandler);
+            case 2:
+                subMenuChild(input, filehandler);
+            case 3:
+                if(isLeader){
+                    // staffmenu
+                }
             case 0:
                 System.out.println("Programmet er nu afsluttet.");
                 System.exit(-1);
         }
     }
 
-    private static void subMenuChild(Scanner input, FileHandler filehandler) {
+    private static void subMenuStaff(Scanner input, FileHandler filehandler){
+        System.out.println("S T A F F   M E N U");
+        System.out.println("TAST 1: Vis liste over staff.");
+        System.out.println("TAST 2: Opret ny staff.");
+        System.out.println("TAST 3: Rediger oplysninger om en medarbejder.");
+        System.out.println("TAST 4: Slet et barn.");
+        System.out.println("TAST 9: HOVEDMENU");
+        System.out.println("TAST 0: Afslut programmet");
 
+        int choice = input.nextInt();
+
+        switch (choice){
+            case 1:
+                System.out.println(staffList);
+                break;
+            case 2:
+                break;
+            case 3:
+                subMenuEditStaff(input, filehandler);
+        }
+    }
+
+    private static void subMenuEditStaff(Scanner input, FileHandler filehandler){
+        System.out.println("R E D I G E R   S T A F F");
+        System.out.println("TAST 1: Skift fornavn på en medarbejder.");
+        System.out.println("TAST 2: Skift efternavn på en medarbejder.");
+        System.out.println("TAST 3: Skift CPR på en medarbejder.");
+        System.out.println("TAST 4: Skift start dato på en medarbejder.");
+        System.out.println("TAST 5: Skift rum på en medarbejder.");
+        System.out.println("TAST 6: Skift indmeldnings dato på en medarbejder.");
+        System.out.println("TAST 7: Skift venteliste status på en medarbejder.");
+
+        System.out.println("TAST 9: Tilbage til børne menu");
+        System.out.println("TAST 0: Afslut programmet");
+    }
+
+    private static void subMenuChild(Scanner input, FileHandler filehandler) {
         System.out.println("B Ø R N E   M E N U");
         System.out.println("TAST 1: Vis liste over børn.");
         System.out.println("TAST 2: Opret et ny barn.");
@@ -210,7 +256,6 @@ public class RoskildeFrieBornehave {
                 System.out.println("PRogrammet er nu afsluttet");
                 System.exit(-1);
         }
-
     }
 
     private static void subMenuEditChild(Scanner input, FileHandler filehandler){
@@ -218,8 +263,12 @@ public class RoskildeFrieBornehave {
         System.out.println("TAST 1: Skift fornavn på et barn.");
         System.out.println("TAST 2: Skift efternavn på et barn.");
         System.out.println("TAST 3: Skift CPR på et barn.");
-        System.out.println("TAST 4: Tilbage til børnemenu");
-        System.out.println("TAST 9: HOVEDMENU");
+        System.out.println("TAST 4: Skift start dato på et barn.");
+        System.out.println("TAST 5: Skift rum på et barn.");
+        System.out.println("TAST 6: Skift indmeldnings dato på et barn.");
+        System.out.println("TAST 7: Skift venteliste status på et barn.");
+
+        System.out.println("TAST 9: Tilbage til børne menu");
         System.out.println("TAST 0: Afslut programmet");
 
         int choice = input.nextInt();
@@ -267,12 +316,71 @@ public class RoskildeFrieBornehave {
                 filehandler.writeParentToFile(parentList);
                 backToSubMenuParent(input, filehandler);
                 break;
+            case 4:
+                System.out.println(childList);
+                System.out.println("Vælg id på ønsket barn: ");
+                chosenID = input.nextInt();
+                for (int i = 0; i < childList.size(); i++){
+                    if (childList.get(i).getID() == chosenID) {
+                        System.out.println("Indtast nyt start dato for " + childList.get(i).getFirstName() + ": ");
+                        childList.get(i).setStartDate(input.nextInt());
+                        break;
+                    }
+                }
+                filehandler.writeChildToFile(childList);
+                subMenuEditChild(input, filehandler);
+                break;
+            case 5:
+                System.out.println(childList);
+                System.out.println("Vælg id på ønsket barn: ");
+                chosenID = input.nextInt();
+                for (int i = 0; i < childList.size(); i++){
+                    if (childList.get(i).getID() == chosenID) {
+                        System.out.println("Indtast andet rum for " + childList.get(i).getFirstName() + ": ");
+                        childList.get(i).setRoom(input.next());
+                        break;
+                    }
+                }
+                filehandler.writeChildToFile(childList);
+                subMenuEditChild(input, filehandler);
+                break;
+            case 6:
+                System.out.println(childList);
+                System.out.println("Vælg id på ønsket barn: ");
+                chosenID = input.nextInt();
+                for (int i = 0; i < childList.size(); i++){
+                    if (childList.get(i).getID() == chosenID) {
+                        System.out.println("Indtast ny indmeldnings dato for " + childList.get(i).getFirstName() + ": ");
+                        childList.get(i).setStartDate(input.nextInt());
+                        break;
+                    }
+                }
+                filehandler.writeChildToFile(childList);
+                subMenuEditChild(input, filehandler);
+                break;
+            case 7:
+                System.out.println(childList);
+                System.out.println("Vælg id på ønsket barn: ");
+                chosenID = input.nextInt();
+                for (int i = 0; i < childList.size(); i++){
+                    if (childList.get(i).getID() == chosenID) {
+                        System.out.println("Skift venteliste status for " + childList.get(i).getFirstName() + "(true/false): ");
+                        childList.get(i).setWaitList(input.nextBoolean());
+                        break;
+                    }
+                }
+                filehandler.writeChildToFile(childList);
+                subMenuEditChild(input, filehandler);
+                break;
+            case 9:
+                menuManager(input, filehandler);
+            case 0:
+                System.out.println("Programmet er afsluttet");
+                System.exit(-1);
         }
-
     }
 
     private static void subMenuParent(Scanner input, FileHandler filehandler) {
-
         System.out.println("F O R Æ L D E R   M E N U");
         System.out.println("TAST 1: Vis liste over forældre.");
         System.out.println("TAST 2: Opret en ny forælder.");
@@ -400,7 +508,6 @@ public class RoskildeFrieBornehave {
     }
 
 
-
     private static void deleteChild(List<Child> list, Scanner input) {
         Iterator<Child> it = list.iterator();
         for (int i = 0; i < list.size(); i++) {
@@ -434,160 +541,6 @@ public class RoskildeFrieBornehave {
             }
         }
     }
-
-
-
-    private static void changeFirstName(List<Child> list, Scanner input) {
-        // print relevante oplysninger til bruger
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println("Barns ID " + list.get(i).getID());
-            System.out.println("Barns navn " + list.get(i).getFirstName());
-        }
-        System.out.println("Skriv id'et på barnet");
-        // scanner til indtastning af id på child
-        int index = input.nextInt();
-        System.out.println(index);
-        // loop listen igennem
-        for (int i = 0; i < list.size(); i++) {
-            // hvis ID'et, som brugeren indtaster er lig med en af børnenes id'ere så gør dette:
-            if (index == list.get(i).getID()) {
-                System.out.println("Hvad skal barnet hedde?");
-                String newName = input.next();
-                // kald metode fra child.java, som redigere fornavnet
-                list.get(i).setFirstName(newName);
-                System.out.println("opdateret info");
-                System.out.println(list.get(i));
-                break;
-            }
-        }
-    }
-
-    private static void changeLastName(List<Child> list, Scanner input) {
-        // print relevante oplysninger til bruger
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println("Barns ID " + list.get(i).getID());
-            System.out.println("Barns navn " + list.get(i).getFirstName());
-        }
-        System.out.println("Skriv id'et på barnet");
-        // scanner til indtastning af id på child
-        int index = input.nextInt();
-        System.out.println(index);
-        // loop listen igennem
-        for (int i = 0; i < list.size(); i++) {
-            // hvis ID'et, som brugeren indtaster er lig med en af børnenes id'ere så gør dette:
-            if (index == list.get(i).getID()) {
-                System.out.println("Nyt efternavn: ");
-                String newName = input.next();
-                // kald metode fra child.java, som rediger lastname
-                list.get(i).setLastName(newName);
-                System.out.println("opdateret info");
-                System.out.println(list.get(i));
-                break;
-            }
-        }
-    }
-
-    private static void changecprNR(List<Child> list, Scanner input) {
-        // print relevante oplysninger til bruger
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println("Barns ID " + list.get(i).getID());
-            System.out.println("Barns navn " + list.get(i).getFirstName());
-        }
-        System.out.println("Skriv id'et på barnet");
-        // scanner til indtastning af id på child
-        int index = input.nextInt();
-        System.out.println(index);
-        // loop listen igennem
-        for (int i = 0; i < list.size(); i++) {
-            // hvis ID'et, som brugeren indtaster er lig med en af børnenes id'ere så gør dette:
-            if (index == list.get(i).getID()) {
-                System.out.println("Nyt efternavn: ");
-                int newCPR = input.nextInt();
-                // kald metode fra child.java, som rediger cpr
-                list.get(i).setCprNR(newCPR);
-                System.out.println("opdateret info");
-                System.out.println(list.get(i));
-                break;
-            }
-        }
-    }
-
-    private static void changeStartDate(List<Child> list, Scanner input) {
-        // print relevante oplysninger til bruger
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println("Barns ID " + list.get(i).getID());
-            System.out.println("Barns navn " + list.get(i).getFirstName());
-        }
-        System.out.println("Skriv id'et på barnet");
-        // scanner til indtastning af id på child
-        int index = input.nextInt();
-        System.out.println(index);
-        // loop listen igennem
-        for (int i = 0; i < list.size(); i++) {
-            // hvis ID'et, som brugeren indtaster er lig med en af børnenes id'ere så gør dette:
-            if (index == list.get(i).getID()) {
-                System.out.println("Nyt efternavn: ");
-                int newStartDate = input.nextInt();
-                // kald metode fra child.java, som rediger cpr
-                list.get(i).setStartDate(newStartDate);
-                System.out.println("opdateret info");
-                System.out.println(list.get(i));
-                break;
-            }
-        }
-    }
-
-    private static void changeRoom(List<Child> list, Scanner input) {
-        // print relevante oplysninger til bruger
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println("Barns ID " + list.get(i).getID());
-            System.out.println("Barns navn " + list.get(i).getFirstName());
-        }
-        System.out.println("Skriv id'et på barnet");
-        // scanner til indtastning af id på child
-        int index = input.nextInt();
-        System.out.println(index);
-        // loop listen igennem
-        for (int i = 0; i < list.size(); i++) {
-            // hvis ID'et, som brugeren indtaster er lig med en af børnenes id'ere så gør dette:
-            if (index == list.get(i).getID()) {
-                System.out.println("Nyt efternavn: ");
-                String newRoom = input.next();
-                // kald metode fra child.java, som rediger lastname
-                list.get(i).setRoom(newRoom);
-                System.out.println("opdateret info");
-                System.out.println(list.get(i));
-                break;
-            }
-        }
-    }
-
-    private static void changeDate(List<Child> list, Scanner input) {
-        // print relevante oplysninger til bruger
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println("Barns ID " + list.get(i).getID());
-            System.out.println("Barns navn " + list.get(i).getFirstName());
-        }
-        System.out.println("Skriv id'et på barnet");
-        // scanner til indtastning af id på child
-        int index = input.nextInt();
-        System.out.println(index);
-        // loop listen igennem
-        for (int i = 0; i < list.size(); i++) {
-            // hvis ID'et, som brugeren indtaster er lig med en af børnenes id'ere så gør dette:
-            if (index == list.get(i).getID()) {
-                System.out.println("Nyt efternavn: ");
-                int newDate = input.nextInt();
-                // kald metode fra child.java, som rediger cpr
-                list.get(i).setDate(newDate);
-                System.out.println("opdateret info");
-                System.out.println(list.get(i));
-                break;
-            }
-        }
-    }
-
-
 
     private static Child createChild(Scanner input) {
         System.out.println("Enter first name: ");
