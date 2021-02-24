@@ -105,36 +105,6 @@ public class RoskildeFrieBornehave {
 
     }
 
-    private static void deleteStaff(List<Staff> list, Scanner input) {
-        Iterator<Staff> it = list.iterator();
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println("Medarbejder nr.: " + list.get(i).getID());
-            System.out.println("Medarbejder navn: " + list.get(i).getFirstName());
-        }
-        System.out.println("Indtast id'et på den medarbejder der skal fjernes: ");
-        int chosenID = input.nextInt();
-
-        while (it.hasNext()) {
-            Staff index = it.next();
-            if (index.getID() == chosenID) {
-                it.remove();
-            }
-        }
-    }
-
-    private static void createStaff(Scanner input) {
-        System.out.println("Indtast ønsket medarbejder ID nr.: ");
-        int id = input.nextInt();
-        System.out.println("Enter first name: ");
-        String firstName = input.next();
-        System.out.println("Enter last name: ");
-        String lastName = input.next();
-        System.out.println("Indtast telefon nr.: ");
-        int phonenr = input.nextInt();
-        Child newChild = new Child(id, firstName, lastName, phonenr);
-        return newChild;
-    }
-
 
     public static void login(Scanner input, FileHandler filehandler) {
         System.out.println("");
