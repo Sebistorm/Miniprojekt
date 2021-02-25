@@ -56,12 +56,12 @@ public class Staff {
     public String toString() {
         return "Staff{" +
                 "ID=" + ID +
-                ", firstName='" + firstName + '\'' + ", lastName=" + lastName + "\n" + "Phone nr.: " +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber=" + phoneNumber +
                 '}';
     }
-
-
-    }
+}
 
     /*
     public static Staff createStaff(Scanner input){
