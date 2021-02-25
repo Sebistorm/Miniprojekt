@@ -34,9 +34,9 @@ public class RoskildeFrieBornehave {
 
     // M E N U E R
     public static void login(Scanner input, FileHandler filehandler) {
-        System.out.println("-------------------------------------");
+        System.out.println("------------------------------------------");
         System.out.println("             L O G I N ");
-        System.out.println("-------------------------------------");
+        System.out.println("------------------------------------------");
 
         System.out.println("Indtast kodeord og tryk ENTER: \n");
 
