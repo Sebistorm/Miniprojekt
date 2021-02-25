@@ -1,11 +1,5 @@
-//Vælge ugenummer, ugedag, tilføj medarbejder.
-//Skal lave et nyt hashmap/treeset/list hver uge, der tilføjes.
-
-//Hashmap
-
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class StaffWorkSchedule {
 

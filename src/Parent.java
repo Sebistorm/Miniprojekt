@@ -1,8 +1,3 @@
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
-
-// HAR VI BRUG FOR AT SKELNE MELLEM MOR OG FAR?
 
 public class Parent {
 
@@ -14,7 +9,6 @@ public class Parent {
     private int childID;
     private int phoneNumber;
 
-//    public Parent(String firstName, String lastName, int phoneNumber) {
     public Parent(String firstName, String lastName, int childID, int phoneNumber) {
         ID = nextID;
         this.firstName = firstName;
@@ -62,14 +56,6 @@ public class Parent {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-//    public String getMomordad() {
-//        return momordad;
-//    }
-//
-//    public void setMomordad(String momordad) {
-//        this.momordad = momordad;
-//    }
 
     public int getPhoneNumber() {
         return phoneNumber;
