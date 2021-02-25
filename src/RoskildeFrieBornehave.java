@@ -6,7 +6,6 @@ public class RoskildeFrieBornehave {
     public static List<Child> childList = new LinkedList<>();
     public static List<Staff> staffList = new LinkedList<>();
     public static List<StaffWorkSchedule> staffWorkSchedule = new LinkedList<>();
-   // public static boolean isLeader = false;
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -16,16 +15,7 @@ public class RoskildeFrieBornehave {
         childList = filehandler.readChildFromFile();
         parentList = filehandler.readParentFromFile();
 
-
-        // PrintAll methods
-        printAllChildren(childList);
-        // PrintAll for Parent
-        printAllParents(parentList);
-        // PrintAll for Staff
-        printAllStaffs(staffList);
         dummyDataStaffSchedule(staffWorkSchedule);
-        // PrintAll for Vagtplan
-        printAllWorkSchedule(staffWorkSchedule);
 
         //Sets nextID
         Child child = new Child();
@@ -43,7 +33,6 @@ public class RoskildeFrieBornehave {
 
 
     // M E N U E R
-
     public static void login(Scanner input, FileHandler filehandler) {
         System.out.println("-------------------------------------");
         System.out.println("             L O G I N ");
@@ -116,7 +105,8 @@ public class RoskildeFrieBornehave {
 
         switch (choice) {
             case 1:
-                System.out.println(childList);
+                printAllChildren(childList);
+//                System.out.println(childList);
                 subMenuChild(input, filehandler);
                 break;
             case 2:
@@ -289,7 +279,8 @@ public class RoskildeFrieBornehave {
 
         switch (choice) {
             case 1:
-                System.out.println(parentList);
+                printAllParents(parentList);
+//                System.out.println(parentList);
                 backToSubMenuParent(input, filehandler);
                 break;
             case 2:
@@ -331,7 +322,7 @@ public class RoskildeFrieBornehave {
         switch (choice) {
             case 1:
                 //print liste over forældre
-                System.out.println(parentList);
+                printAllParents(parentList);
                 System.out.println("Vælg id på ønsket forældre: ");
                 chosenID = input.nextInt();
                 for (int i = 0; i < parentList.size(); i++){
@@ -345,7 +336,7 @@ public class RoskildeFrieBornehave {
                 backToSubMenuParent(input, filehandler);
                 break;
             case 2:
-                System.out.println(parentList);
+                printAllParents(parentList);
                 System.out.println("Vælg id på ønsket forældre: ");
                 chosenID = input.nextInt();
                 for (int i = 0; i < parentList.size(); i++){
@@ -359,7 +350,7 @@ public class RoskildeFrieBornehave {
                 backToSubMenuParent(input, filehandler);
                 break;
             case 3:
-                System.out.println(parentList);
+                printAllParents(parentList);
                 System.out.println("Vælg id på ønsket forældre: ");
                 chosenID = input.nextInt();
                 for (int i = 0; i < parentList.size(); i++){
@@ -425,7 +416,10 @@ public class RoskildeFrieBornehave {
 
         switch (choice){
             case 1:
-                System.out.println(staffList);
+                printAllStaffs(staffList);
+                System.out.println("");
+                subMenuStaff(input, filehandler);
+//                System.out.println(staffList);
                 break;
             case 2:
                 staffList.add(createStaff(input));
@@ -436,15 +430,20 @@ public class RoskildeFrieBornehave {
                 subMenuEditStaff(input, filehandler);
                 break;
             case 4:
-
+                deleteStaff(staffList, input);
             case 5:
-                makeSchedule(input, staffList, staffWorkSchedule);
-                System.out.println(staffWorkSchedule);
+                printAllWorkSchedule(staffWorkSchedule);
+                System.out.println("");
                 subMenuStaff(input, filehandler);
+               break;
+            case 6:
+                makeSchedule(input, staffList, staffWorkSchedule);
+                printAllWorkSchedule(staffWorkSchedule);
+                System.out.println("");
+                subMenuStaff(input, filehandler);
+                break;
             default:
                 menuManager(input, filehandler);
-
-
         }
     }
 
@@ -462,7 +461,7 @@ public class RoskildeFrieBornehave {
 
         switch (choice) {
             case 1:
-                System.out.println(staffList);
+                printAllStaffs(staffList);
                 System.out.println("Vælg id på medarbejderen: ");
                 chosenID = input.nextInt();
                 for (int i = 0; i < staffList.size(); i++) {
@@ -475,7 +474,7 @@ public class RoskildeFrieBornehave {
                 filehandler.writeStaffToFile(staffList);
                 subMenuEditStaff(input, filehandler);
             case 2:
-                System.out.println(staffList);
+                printAllStaffs(staffList);
                 System.out.println("Vælg id på på medarbejderen: ");
                 chosenID = input.nextInt();
                 for (int i = 0; i < staffList.size(); i++) {
@@ -489,7 +488,7 @@ public class RoskildeFrieBornehave {
                 subMenuEditStaff(input, filehandler);
                 break;
             case 3:
-                System.out.println(staffList);
+                printAllStaffs(staffList);
                 System.out.println("Vælg id på medarbejder: ");
                 chosenID = input.nextInt();
                 for (int i = 0; i < staffList.size(); i++) {
@@ -517,7 +516,6 @@ public class RoskildeFrieBornehave {
 
 
     //  C H I L D
-
     private static Child createChild(Scanner input) {
         System.out.println("Indtast fornavn: ");
         String firstName = input.next();
@@ -527,7 +525,7 @@ public class RoskildeFrieBornehave {
         int cprNr = input.nextInt();
         System.out.println("Indtast barnets startdato: "); //BURDE HÆNGE SAMMEN MED VENTELISTE
         int startDate = input.nextInt();
-        System.out.println("Hvilken stue skal barnet tilknyttes? Stue: Yellow, red, green");// METODE TIL DANSK
+        System.out.println("Hvilken stue skal barnet tilknyttes? Rød / Grøn / Gul");// METODE TIL DANSK
         String room = input.next();
         System.out.println("Indtast dags dato: "); //SLETTE?
         int date = input.nextInt();
@@ -597,6 +595,7 @@ public class RoskildeFrieBornehave {
     }
 
 
+
     //  P A R E N T
     public static Parent createParent(Scanner input, FileHandler fileHandler) {
         System.out.println("Indtast fornavn: ");
@@ -664,6 +663,8 @@ public class RoskildeFrieBornehave {
         return newStaff;
     }
 
+
+    // P R I N T  A L L
     // PrintAll for Child
     public static void printAllChildren(List<Child> childList) {
         String waitlist = "";
@@ -856,8 +857,6 @@ public class RoskildeFrieBornehave {
 
         StaffWorkSchedule newWeek = new StaffWorkSchedule(week, mondayShift, tuesdayShift, wednesdayShift, thurdayShift, fridayShift);
         plan.add(newWeek);
-
-
     }
 
     public static void dummyDataStaffSchedule(List<StaffWorkSchedule> plan) {
@@ -899,4 +898,3 @@ public class RoskildeFrieBornehave {
     }
 
 }
-

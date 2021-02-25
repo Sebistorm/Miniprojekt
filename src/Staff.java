@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 public class Staff {
     int ID;
@@ -12,13 +11,6 @@ public class Staff {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
     }
-
-    /*
-    public Staff() {
-        ID = nextID;
-    }
-
- */
 
     public int getID() {
         return ID;
@@ -62,15 +54,3 @@ public class Staff {
                 '}';
     }
 }
-
-    /*
-    public static Staff createStaff(Scanner input){
-
-        System.out.println("navn");
-        String name = input.next();
-
-        Staff newStaff = new Staff(name);
-        return newStaff;
-    }
-
-     */
